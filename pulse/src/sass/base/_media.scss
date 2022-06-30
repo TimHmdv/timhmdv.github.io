@@ -1,0 +1,43 @@
+@media (max-width: 1200px) {}
+
+@media (max-width: 991px) {
+	.header {
+		justify-content: space-around;
+
+		&__contacts {
+			width: 250px;
+		}
+	}
+
+	.promo {
+		&__wrapper {
+			align-items: center;
+		}
+	}
+
+	.advantages {
+		&__items {
+			justify-content: space-around;
+		}
+
+		&__title {
+			font-size: 17px;
+		}
+
+		&__descr {
+			font-size: 13px;
+		}
+	}
+
+}
+
+@media (max-width: 767px) {
+	.advantages {
+		&__items {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+}
+
+@media (max-width: 575px) {}
