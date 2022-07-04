@@ -1,12 +1,22 @@
 @media (max-width: 1200px) {}
 
 @media (max-width: 991px) {
+	.title {
+		&_left {
+			text-align: center;
+		}
+	}
 	.header {
 		justify-content: space-around;
 
 		&__contacts {
 			width: 250px;
 		}
+	}
+
+	.feed-form {
+		margin: 0 auto;
+		margin-top: 36px;
 	}
 
 	.promo {
@@ -29,15 +39,93 @@
 		}
 	}
 
+	.consultation {
+		&__descr {
+			text-align: center;
+		}
+	}
+
 }
 
 @media (max-width: 767px) {
+	.header {
+		justify-content: space-around;
+		&__logo {
+			width: 192x;
+		}
+		&__official {
+			display: none;
+		}
+		&__contacts {
+			width: 192px;
+		}
+	}
+	
+	.promo {
+		&__header {
+			font-size: 38px;
+		}
+		&__subheader {
+			font-size: 19px;
+		}
+	}
+
 	.advantages {
 		&__items {
 			flex-direction: column;
 			align-items: center;
 		}
+
+		&__item {
+			margin-top: 38px;
+			&:first-child {
+				margin-top: 0;
+			}
+		}
 	}
 }
 
-@media (max-width: 575px) {}
+@media (max-width: 575px) {
+	.title {
+		&_left {
+			font-size: 30px;
+		}
+	}
+	.button {
+		margin: 0 auto;
+		&_main {
+			margin-top: 15px;
+		}
+	}
+	.header {
+		flex-direction: column;
+		align-items: center;
+
+		&__contacts {
+			margin-top: 30px;
+			a {
+				margin: 0 auto;
+			}
+		}
+	}
+	.promo {
+		&__wrapper {
+			margin-top: 30px;
+		}
+		&__header {
+			font-size: 30px;
+			text-align: center;
+		}
+		&__subheader {
+			text-align: center;
+		}
+		&__icons {
+			flex-direction: column;
+			align-items: center;
+			width: 100vw;
+		}
+		&__icon {
+			margin-top: 20px;
+		}
+	}
+}
