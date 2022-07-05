@@ -3,7 +3,7 @@
 @media (max-width: 991px) {
 	.title {
 		&_left {
-			text-align: center;
+			margin-left: 30px;
 		}
 	}
 	.header {
@@ -21,7 +21,7 @@
 
 	.promo {
 		&__wrapper {
-			align-items: center;
+			margin-right: 30px;
 		}
 	}
 
