@@ -89,6 +89,12 @@
 			}
 		}
 	}
+
+	.carousel {
+		&__inner {
+			width: 100vw;
+		}
+	}
 }
 
 @media (max-width: 575px) {
@@ -148,6 +154,12 @@
 		&__link {
 			margin: 0 auto;
 			margin-top: 10px;
+		}
+	}
+
+	.carousel {
+		&__inner {
+			width: 100vw;
 		}
 	}
 }
