@@ -36,7 +36,6 @@
         justify-content: center;
         list-style-type: none;
         padding-left: 0;
-        
         button {
             border-color: red;
             background-color: white;
@@ -45,12 +44,12 @@
             border-radius: 100%;
             font-size: 0;
             margin: 0 10px;
-            transition: 0.6;
         }
 
         .slick-active {
             button {
                 background-color: red;
+                transition: 1s all;
             }
         }
     }
