@@ -37,7 +37,7 @@
         list-style-type: none;
         padding-left: 0;
         button {
-            border-color: red;
+            border-color: $main-color;
             background-color: white;
             height: 25px;
             width: 25px;
@@ -48,7 +48,7 @@
 
         .slick-active {
             button {
-                background-color: red;
+                background-color: $main-color;
                 transition: 1s all;
             }
         }
