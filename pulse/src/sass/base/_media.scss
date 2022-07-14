@@ -120,6 +120,7 @@
 				text-align: center;
 				height: 50px;
 				background-color: #c70101;
+				border-radius: 5px;
 				font-size: 18px;
 				line-height: 50px;
 				font-weight: 500;
@@ -149,6 +150,14 @@
 		flex-direction: column;
 		align-items: center;
 
+		&__logo {
+			width: 320px;
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+
 		&__contacts {
 			margin-top: 30px;
 
@@ -161,10 +170,13 @@
 	.promo {
 		&__header {
 			font-size: 30px;
+			margin: 0 auto;
 			text-align: center;
 		}
 
 		&__subheader {
+			margin: 0 auto;
+			margin-top: 15px;
 			text-align: center;
 		}
 
@@ -193,6 +205,19 @@
 	.carousel {
 		.slider {
 			width: 100vw;
+		}
+	}
+
+	.catalog {
+		.slider {
+			.slick-prev, .slick-next {
+				left: -50px;
+			}
+		
+			.slick-next {
+				right: -50px;
+				left: auto;
+			}
 		}
 	}
 }
