@@ -1,4 +1,6 @@
 .feedback {
+
+    margin-bottom: 71px;
     
     .title {
         margin-bottom: 70px;
@@ -9,10 +11,6 @@
         justify-content: end;
         margin-bottom: 100px;
         position: relative;
-    
-        &:last-child {
-            margin-bottom: 71px;
-        }
 
         &__img {
             position: absolute;
