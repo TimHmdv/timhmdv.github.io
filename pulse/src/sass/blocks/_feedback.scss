@@ -5,11 +5,11 @@
     }
     
     .recall {
-        position: relative;
         display: flex;
         justify-content: end;
         margin-bottom: 100px;
-
+        position: relative;
+    
         &:last-child {
             margin-bottom: 71px;
         }
@@ -25,19 +25,11 @@
             
             img {
                 position: absolute;
-                &:nth-child(1) {
-                    left: -50px;
-                    top: -40px;
-                }
-                &:nth-child(2) {
-                    left: -50px;
-                }
             }
         }
 
         &__wrapper {
             width: 650px;
-            margin-left: 62px;
         }
 
         &__title {
