@@ -1,54 +1,50 @@
 .feedback {
 
-    margin-bottom: 71px;
+    padding-bottom: 71px;
     
     .title {
         margin-bottom: 70px;
     }
     
-    .recall {
+    &__recall {
         display: flex;
-        justify-content: end;
+        justify-content: center;
         margin-bottom: 100px;
-        position: relative;
-
-        &__img {
-            position: absolute;
-            border-radius: 84.5px;
-            overflow: hidden;
-            width: 169px;
-            height: 169px;
-
-            left: -0px;
-            
-            img {
-                position: absolute;
-            }
+        &:last-child {
+            margin-bottom: 0;
         }
+    }
+        
+    &__img {
+        width: 169px;
+        height: 169px;
+    }
 
-        &__wrapper {
-            width: 650px;
-        }
+    &__wrapper {
+        width: 650px;
+        margin-left: 61px;
+    }
 
-        &__title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0d0d0d;
-        }
+    &__title {
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 700;
+        color: #0d0d0d;
+    }
 
-        &__subtitle {
-            font-size: 14px;
-            font-weight: 300;
-            color: #646464;
-            margin-top: 10px;
-        }
+    &__subtitle {
+        font-size: 14px;
+        line-height: 14px;
+        font-weight: 300;
+        color: #646464;
+        margin-top: 10px;
+    }
 
-        &__descr {
-            font-size: 16px;
-            line-height: 1.2;
-            font-weight: 300;
-            color: #0d0d0d;
-            margin-top: 19px;
-        }
+    &__descr {
+        font-size: 16px;
+        font-weight: 300;
+        color: #0d0d0d;
+        margin-top: 19px;
+        line-height: 1.2;
     }
 }
