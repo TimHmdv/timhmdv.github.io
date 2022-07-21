@@ -54,5 +54,10 @@
         img {
             height: 27px;
         }
+
+        &:hover {
+            transition: 1s all;
+            opacity: 50%;
+        }
     }
 }
