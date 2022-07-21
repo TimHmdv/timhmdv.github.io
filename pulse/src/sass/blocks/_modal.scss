@@ -38,4 +38,12 @@
         color: #0d0d0d;
         text-align: center;
     }
+
+    &_mini {
+        min-height: 140px;
+    }
+}
+
+#consultation, #order {
+    display: none;
 }
