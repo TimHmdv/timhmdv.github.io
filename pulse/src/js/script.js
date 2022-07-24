@@ -48,18 +48,32 @@ $(document).ready(function () {
 
 	// Modal
 
+
 	$('[data-modal=consultation]').on('click', function () {
-		$('.overlay, #consultation').fadeIn('slow');
+		if ($(window).width() >= 576) {
+			$('.overlay, #consultation').fadeIn('slow');
+		} else {
+			$('.overlay, #consultation').slideDown('slow');
+		}
+		
 	});
 
 	$('.modal__close').on('click', function () {
-		$('.overlay, #consultation, #order, #thanks').fadeOut('slow');
+		if ($(window).width() >= 576) {
+			$('.overlay, #consultation, #order, #thanks').fadeOut('slow');
+		} else {
+			$('.overlay, #consultation, #order, #thanks').slideUp('slow');
+		}
 	})
 
 	$('.button_mini').each(function (i) {
 		$(this).on('click', function () {
 			$('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text());
-			$('.overlay, #order').fadeIn('slow');
+			if ($(window).width() >= 576) {
+				$('.overlay, #order').fadeIn('slow');
+			} else {
+				$('.overlay, #order').slideDown('slow');
+			}
 		});
 	})
 
