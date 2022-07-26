@@ -77,10 +77,35 @@ $(document).ready(function () {
 		});
 	})
 
-	$('consultation-form').validate();
+	function validateForm (form) {
+		$(form).validate({
+			rules: {
+				name: {
+					required: true,
+					minlength: 3
+				},
+				phone: "required",
+				email: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				name: {
+					required: "Укажите имя",
+					minlength: jQuery.validator.format("Введите как минимум {0} символа(-ов)!")
+				},
+				phone: "Укажите номер телефона",
+				email: {
+					required: "Укажите адрес электронной почты",
+					email: "Ваш адрес электронной почты должен быть в формате name@domain.com"
+				}
+			}
+		});
+	};
 
-	$('#consultation form').validate();
-
-	$('#order form').validate();
+	validateForm('#consultation-form');
+	validateForm('#consultation form');
+	validateForm('#order form');
 
 });
