@@ -119,7 +119,10 @@ $(document).ready(function () {
 			data: $(this).serialize(),
 			success: function (response) {
 				$(this).find('input').val('');
-			
+				
+				$('#consultation, #order').fadeOut('slow');
+				$('.overlay, #thanks').fadeIn('slow');
+
 				$('form').trigger('reset');
 			}
 		});
