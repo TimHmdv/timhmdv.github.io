@@ -128,4 +128,22 @@ $(document).ready(function () {
 		});
 		return false;
 	});
+
+	// Pageup and Smooth scroll
+
+	$(window).scroll(function () { 
+		if ($(this).scrollTop() > 1600) {
+			$('.pageup').fadeIn();
+		} else {
+			$('.pageup').fadeOut();
+		}
+	});
+
+	$("a.pageup").on("click", function(e){
+		e.preventDefault();
+		var anchor = $(this).attr('href');
+		$('html, body').stop().animate({
+			scrollTop: $(anchor).offset().top - 60
+		}, 800);
+	});
 });
