@@ -24,4 +24,30 @@
         height: 2px;
         background-color: black;
     }
+
+    &__link {
+        &-github {
+            &:hover {
+                svg path {
+                    fill: $main-color;
+                }
+            }
+        }
+
+        &-instagram {
+            &:hover {
+                svg path {
+                    fill: $main-color;
+                }
+            }
+        }
+
+        &-facebook {
+            &:hover {
+                svg path {
+                    fill: $main-color;
+                }
+            }
+        }
+    }
 }
