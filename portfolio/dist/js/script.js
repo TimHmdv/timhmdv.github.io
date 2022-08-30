@@ -14,3 +14,10 @@ closeElement.addEventListener('click', () => {
 overlayElement.addEventListener('click', () => {
     menuElement.classList.remove('active');
 });
+
+const levelsValue = document.querySelectorAll('.skills__level-value');
+const barsValue = document.querySelectorAll('.skills__level-bar');
+
+levelsValue.forEach(function(levelValue, index) {
+    barsValue[index].style.width = levelValue.innerHTML;
+});
