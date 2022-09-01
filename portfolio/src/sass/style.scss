@@ -24,6 +24,10 @@
     &_align-center {
         margin: 0 auto;
     }
+
+    &_mt25 {
+        margin-top: 25px;
+    }
 }
 
 @import 'blocks/promo';
@@ -34,3 +38,4 @@
 @import 'blocks/about-me';
 @import 'blocks/resume';
 @import 'blocks/skills';
+@import 'blocks/portfolio';
