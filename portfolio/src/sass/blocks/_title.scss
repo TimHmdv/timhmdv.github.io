@@ -27,6 +27,7 @@
     }
 
     &_section-title {
+        margin-bottom: 0;
         position: relative;
         text-align: center;
         @include before-circle;
