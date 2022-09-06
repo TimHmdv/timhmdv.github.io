@@ -1,0 +1,105 @@
+@media (max-width: 1439px) {
+    .sidepanel {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .about-me {
+        .container {
+            grid-template-columns: 400px 524px;
+            column-gap: 33px;
+        }
+
+        &__info {
+            &-text {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .title {
+        &_fz36 {
+            font-size: 30px;
+        }
+    }
+
+    .about-me {
+        .container {
+            grid-template-columns: 300px 380px;
+            column-gap: 33px;
+        }
+
+        &__skills {
+            grid-template: repeat(3, minmax(auto, auto)) / repeat(1, minmax(auto, auto));
+        }
+
+        &__skill {
+            grid-template: minmax(21px, auto) minmax(auto, auto) / 0 minmax(auto, auto);
+
+            &-text {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+
+    .title {
+        &_fz48 {
+            font-size: 28px;
+        }
+    }
+
+    .promo {
+        &__title {
+            line-height: 39px;
+            width: 300px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .title {
+        &_fz48 {
+            font-size: 26px;
+        }
+    }
+
+    .hamburger {
+        right: 20px;
+    }
+    
+    .menu {
+        &__block {
+            width: 250px;
+            padding-left: 20px;
+        }
+    }
+
+    .promo {
+        background: url('../img/main_bg.webp') no-repeat 59%/cover;
+        &__btns {
+            margin-top: 30px;
+        }
+    }
+}

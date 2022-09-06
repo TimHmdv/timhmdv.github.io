@@ -5,15 +5,16 @@
     padding-top: 205px;
 
     &__title {
+        margin-top: 10px;
+        width: 535px;
+        
+    }
+
+    &__subtitle {
         position: relative;
         z-index: 1;
         padding-left: 10px;
         @include before_circle;
-    }
-
-    &__subtitle {
-        width: 535px;
-        margin-top: 10px; 
     }
 
     &__btns {
