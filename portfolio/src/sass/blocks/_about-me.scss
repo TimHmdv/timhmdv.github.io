@@ -15,6 +15,8 @@
 
 		img {
 			width: 100%;
+			height: 100%;
+            object-fit: cover;
 		}
 	}
 
@@ -50,7 +52,7 @@
 
 	&__skill {
 		display: grid;
-		grid-template: minmax(21px, auto) minmax(89px, auto) / repeat(2, minmax(auto, auto));
+		grid-template: minmax(21px, auto) minmax(116px, auto) / repeat(2, minmax(auto, auto));
 		column-gap: 45px;
 		row-gap: 6px;
 
@@ -81,8 +83,7 @@
 		&-text {
 			grid-row: 2 / 3;
 			grid-column: 2 / 3;
-
-			min-height: 116px;
+			
 			width: 200px;
 
 			font-weight: normal;
