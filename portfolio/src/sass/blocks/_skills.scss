@@ -2,10 +2,10 @@
     padding-top: 125px;
 
     &__wrapper {
-        margin-top: 60px;
+        padding-top: 60px;
         display: grid;
         grid-template: repeat(2, minmax(270px, auto)) / repeat(4, 270px);
-        grid-auto-columns: 270px;
+        grid-auto-rows: 270px;
         gap: 13px;
 
         justify-content: center;
@@ -32,7 +32,7 @@
         }
 
         &-text {
-            margin-top: 20px;
+            margin-top: 15px;
             font-weight: 500;
             font-size: 12px;
             line-height: 18px;
@@ -40,15 +40,17 @@
     }
 
     &__levels {
-        margin-top: 128px;
+        margin-top: 125px;
         display: grid;
         grid-template: repeat(2, 55px) / repeat(3, 350px);
+        grid-auto-rows: 55px;
         gap: 38px 45px;
+        justify-content: center;
     }
 
     &__level {
         display: grid;
-        grid-template: repeat(2, 14px) / repeat(2, 175px);
+        grid-template: repeat(2, 14px) / repeat(2, auto);
         row-gap: 27px;
 
         &-title {

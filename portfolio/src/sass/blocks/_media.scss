@@ -30,6 +30,17 @@
             justify-content: center;
         }
     }
+
+    .skills {
+        &__wrapper {
+            grid-template-columns: repeat(3, 270px);
+        }
+
+        &__levels {
+            grid-template-columns: repeat(2, 350px);
+            column-gap: 100px;
+        }
+    }
 }
 
 @media (max-width: 992px) {
@@ -44,6 +55,8 @@
     }
 
     .about-me {
+        padding-top: 60px;
+
         .container {
             grid-template-columns: 300px 380px;
             column-gap: 33px;
@@ -68,10 +81,28 @@
     }
 
     .resume {
+        padding-top: 60px;
+
         &__wrapper {
             grid-template-columns: repeat(2, 325px);
         }   
     }
+
+    .skills {
+        padding-top: 60px;
+
+        &__wrapper {
+            grid-template: repeat(2, minmax(270px, auto)) / repeat(2, 270px);
+            gap: 38px;
+        }    
+        
+        &__levels {
+            margin-top: 60px;
+            grid-template-columns: repeat(2, 315px);
+            column-gap: 38px;
+        }
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -120,9 +151,29 @@
     }
 
     .resume {
+        padding-top: 40px;
+        
         &__wrapper {
+            padding-top: 40px;
             grid-template-columns: repeat(1, 425px);
         }   
+    }
+
+    .skills {
+        padding-top: 40px;
+
+        &__wrapper {
+            padding-top: 40px;
+            grid-template: repeat(2, minmax(265px, auto)) / repeat(2, 265px);
+            grid-auto-rows: 265px;
+            gap: 5px;
+        }    
+        
+        &__levels {
+            margin-top: 40px;
+            grid-template-columns: repeat(1, 350px);
+            column-gap: unset;
+        }
     }
 }
 
@@ -139,6 +190,7 @@
 
         &_fz36 {
             font-size: 24px;
+            line-height: 36px;
         }
     }
 
@@ -171,5 +223,18 @@
         &__wrapper {
             grid-template-columns: repeat(1, 295px);
         }   
+    }
+
+    .skills {
+        &__wrapper {
+            grid-template: repeat(2, minmax(265px, auto)) / repeat(1, 265px);
+            grid-auto-rows: 265px;
+            column-gap: unset;
+            row-gap: 20px;
+        }    
+        
+        &__levels {
+            grid-template-columns: repeat(1, 300px);
+        }
     }
 }
