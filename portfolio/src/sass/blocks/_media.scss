@@ -21,6 +21,15 @@
             }
         }
     }
+
+    .resume {
+        &__wrapper {
+            padding: 0;
+            padding-top: 60px;
+            column-gap: 50px;
+            justify-content: center;
+        }
+    }
 }
 
 @media (max-width: 992px) {
@@ -56,6 +65,12 @@
                 width: 100%;
             }
         }
+    }
+
+    .resume {
+        &__wrapper {
+            grid-template-columns: repeat(2, 325px);
+        }   
     }
 }
 
@@ -103,6 +118,12 @@
         }
         
     }
+
+    .resume {
+        &__wrapper {
+            grid-template-columns: repeat(1, 425px);
+        }   
+    }
 }
 
 @media (max-width: 576px) {
@@ -144,5 +165,11 @@
         &__skills {
             grid-template-columns: 1fr;
         }
+    }
+
+    .resume {
+        &__wrapper {
+            grid-template-columns: repeat(1, 295px);
+        }   
     }
 }
