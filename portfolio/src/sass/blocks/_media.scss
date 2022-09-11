@@ -52,6 +52,17 @@
             }
         }
     }
+
+    .contacts {
+        &__wrapper {
+            padding: 0;
+            grid-template-columns: 585px;
+            justify-content: center;
+        }
+        &__photo {
+            display: none;
+        }
+    }
 }
 
 @media (max-width: 992px) {
@@ -204,6 +215,45 @@
             margin-top: 40px;
         }
     }
+
+    .contacts {
+        padding-top: 40px;
+        &__wrapper {
+            padding: 0;
+            grid-template-columns: 1fr;
+            justify-content: center;
+        }
+        &__photo {
+            display: none;
+        }
+    
+        &__link {
+            margin-right: 25px;
+            img {
+                max-width: 30px;
+                max-height: 30px;
+            }
+        }
+        &__form {
+
+            grid-template: 45px 45px 190px / repeat(1, 1fr);
+        }
+    
+        &__triggers {
+            grid-column: unset;
+            grid-template-columns: repeat(2, auto);
+        }
+    
+        &__policy {
+            input {
+                margin-right: 5px;
+            }
+        }
+
+        &__textarea {
+            grid-column: unset;
+        }
+    }
 }
 
 @media (max-width: 576px) {
@@ -263,6 +313,22 @@
     .prices {
         &__wrapper {
             grid-template-columns: repeat(auto-fit, 270px);
+        }
+    }
+
+    .contacts {
+        padding-bottom: 50px;
+        &__triggers {
+            grid-column: unset;
+            grid-template-columns: repeat(1, auto);
+        }
+
+        &__subtitle {
+            margin-top: 20px;
+        }
+
+        &__policy {
+            margin-top: 20px;
         }
     }
 }
