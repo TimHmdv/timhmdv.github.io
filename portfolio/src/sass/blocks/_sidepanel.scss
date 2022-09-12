@@ -29,6 +29,7 @@
         &-github {
             &:hover {
                 svg path {
+                    transition: all 0.7s;
                     fill: $main-color;
                 }
             }
@@ -37,6 +38,7 @@
         &-instagram {
             &:hover {
                 svg path {
+                    transition: all 0.7s;
                     fill: $main-color;
                 }
             }
@@ -45,6 +47,7 @@
         &-vkontakte {
             &:hover {
                 svg path {
+                    transition: all 0.7s;
                     fill: $main-color;
                 }
             }
