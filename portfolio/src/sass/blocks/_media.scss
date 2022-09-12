@@ -135,6 +135,10 @@
             column-gap: 30px;
         }
     }
+
+    .contacts {
+        padding-top: 60px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -285,7 +289,7 @@
     }
 
     .promo {
-        background: url('../img/main_bg.webp') no-repeat 59%/cover;
+        // background: url('../img/main_bg.webp') no-repeat 59%/cover;
         &__btns {
             margin-top: 30px;
         }
