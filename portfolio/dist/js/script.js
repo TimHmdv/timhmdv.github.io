@@ -63,9 +63,9 @@ const smoothScroll = (from, to, hash) => {
         speed;
 
     if (to > from) {
-        speed = 30;
+        speed = 17;
     } else {
-        speed = -30;
+        speed = -17;
     }
     
     let move = setInterval(function() {
