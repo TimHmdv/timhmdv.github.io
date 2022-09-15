@@ -37,24 +37,29 @@
 			font-size: 14px;
 			line-height: 21px;
 			margin-top: 20px;
+			margin-bottom: 0;
 		}
 	}
 
 	&__skills {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
+		grid-row: 2 / 3;
+		grid-column: 2 / 3;
 	}
 
 	&__skill {
+		display: grid;
+		grid-template-columns: 80px auto;
+		column-gap: 30px;
+
 		&-photo {
-			margin: 0 auto;
-			margin-top: 10px;
-			width: 25px;
+			margin: auto auto;
+		}
+
+		&-description {
+
 		}
 
 		&-title {
-			text-align: center;
 			margin-top: 10px;
 		}
 
