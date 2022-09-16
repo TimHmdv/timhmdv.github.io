@@ -68,11 +68,19 @@
 @media (max-width: 992px) {
     .container {
         max-width: 720px;
+        flex-direction: column;
+        align-items: center;
     }
 
     .title {
         &_fz36 {
             font-size: 30px;
+        }
+    }
+
+    .promo {
+        &__photo {
+            margin-top: 35px;
         }
     }
 
@@ -278,6 +286,11 @@
         }
     }
 
+    .portfolio {
+        &__wrapper {
+            margin-top: 40px;
+        }
+    }
     .contacts {
         padding-bottom: 50px;
         &__triggers {
