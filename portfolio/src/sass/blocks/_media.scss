@@ -107,18 +107,6 @@
         padding-top: 60px;
     }
 
-    .prices {
-        padding-top: 60px;
-        &__wrapper {
-            margin: 0;
-            margin-top: 60px;
-
-            grid-template-columns: repeat(auto-fit, 320px);
-            justify-content: center;
-            column-gap: 30px;
-        }
-    }
-
     .contacts {
         padding-top: 60px;
     }
@@ -158,6 +146,10 @@
         &__info {
             grid-row: unset;
             grid-column: unset;
+
+            &-title {
+                margin-top: 40px;
+            }
         }
 
         &__skills {
@@ -191,13 +183,6 @@
 
     .portfolio {
         padding-top: 40px;
-    }
-    
-    .prices {
-        padding-top: 40px;
-        &__wrapper {
-            margin-top: 40px;
-        }
     }
 
     .contacts {
@@ -276,7 +261,9 @@
     }
 
     .about-me {
-
+        &__skill {
+            column-gap: 15px;
+        }
     }
 
     .resume {
@@ -288,12 +275,6 @@
     .skills {
         &__levels {
             grid-template-columns: repeat(1, 300px);
-        }
-    }
-
-    .prices {
-        &__wrapper {
-            grid-template-columns: repeat(auto-fit, 270px);
         }
     }
 
