@@ -59,6 +59,23 @@
             background-color: white;
             font-size: 12px;
             margin-bottom: 0;
+            z-index: 1;
+        }
+
+        input.error, textarea.error {
+            border: 1px solid red;
+        }
+    
+        label.error {
+            border: none;
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+            z-index: 2;
+        }
+
+        input.valid, textarea.valid {
+            border: 1px solid green;
         }
     }
 
