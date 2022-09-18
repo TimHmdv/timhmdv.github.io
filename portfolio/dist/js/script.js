@@ -88,4 +88,58 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // WOW.js library initialization
     new WOW().init();
+
+    // Form validation
+    $('form').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            text: {
+                required: true
+            },
+            checkbox: {
+                required: true
+            }
+        },
+        messages: {
+            name: {
+                required: "Укажите имя",
+                minlength: jQuery.validator.format("Введите как минимум {0} символа(-ов)!")
+            },
+            email: {
+                required: "Укажите адрес электронной почты",
+                email: "Неверный формат"
+            },
+            text: {
+                required: "Необходимо ввести сообщение"
+            },
+            checkbox: {
+                required: "Необходимо согласие"
+            }
+        }
+    });
+
+    // Send data from form
+
+    $('form').submit(function (e) {
+		e.preventDefault();
+		$.ajax({
+			type: "POST",
+			url: "mailer/smart.php",
+			data: $(this).serialize(),
+			success: function (response) {
+				$(this).find('input').val('');
+                $(this).find('textarea').val('');
+
+				$('form').trigger('reset');
+			}
+		});
+		return false;
+	});
 })
