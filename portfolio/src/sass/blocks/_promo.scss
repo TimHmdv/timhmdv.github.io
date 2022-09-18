@@ -1,5 +1,5 @@
 .promo {
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
     // background: url('../img/main_bg.webp') no-repeat 50%/cover;
     background: linear-gradient(0deg, rgba(255,255,255,1) 7%, rgba(253,187,45,1) 100%);
@@ -8,6 +8,7 @@
     .container {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 
     &__title {

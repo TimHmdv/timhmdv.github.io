@@ -9,6 +9,10 @@
         max-width: 960px;
     }
 
+    .promo {
+        padding-top: 155px;
+    }
+
     .about-me {
         .container {
             grid-template-columns: 400px 524px;
@@ -34,11 +38,6 @@
     .skills {
         &__wrapper {
             grid-template-columns: repeat(auto-fit, 270px);
-        }
-
-        &__levels {
-            grid-template-columns: repeat(2, 350px);
-            column-gap: 100px;
         }
     }
 
@@ -107,12 +106,6 @@
 
     .skills {
         padding-top: 60px;
-
-        &__levels {
-            margin-top: 60px;
-            grid-template-columns: repeat(2, 315px);
-            column-gap: 38px;
-        }
     }
 
     .portfolio {
@@ -185,12 +178,6 @@
         &__wrapper {
             padding-top: 40px;
         }    
-        
-        &__levels {
-            margin-top: 40px;
-            grid-template-columns: repeat(1, 350px);
-            column-gap: unset;
-        }
     }
 
     .portfolio {
@@ -282,12 +269,6 @@
         &__wrapper {
             grid-template-columns: repeat(1, 295px);
         }   
-    }
-
-    .skills {
-        &__levels {
-            grid-template-columns: repeat(1, 300px);
-        }
     }
 
     .portfolio {
