@@ -1,13 +1,12 @@
 .promo {
     height: 100vh;
     position: relative;
-    // background: url('../img/main_bg.webp') no-repeat 50%/cover;
     background: linear-gradient(0deg, rgba(255,255,255,1) 7%, rgba(253,187,45,1) 100%);
-    padding-top: 205px;
 
     .container {
+        height: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
     }
 
@@ -43,6 +42,8 @@
     }
 
     &__photo {
-        display: flex;
+        img {
+            max-width: 400px;
+        }
     }
 }
