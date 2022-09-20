@@ -4,24 +4,28 @@ window.addEventListener('DOMContentLoaded', () => {
     menuElement = document.querySelector('.menu'),
     menuLinkElements = document.querySelectorAll('.menu__link'),
     closeElement = document.querySelector('.menu__close'),
-    overlayElement = document.querySelector('.menu__overlay');
+    overlayElement = document.querySelector('.overlay');
 
     hamburgerElement.addEventListener('click', () => {
     menuElement.classList.add('active');
+    overlayElement.classList.add('active');
     });
 
     menuLinkElements.forEach(function (menuLinkElement) {
     menuLinkElement.addEventListener('click', () => {
     menuElement.classList.remove('active');
+    overlayElement.classList.remove('active');
     });
     })
 
     closeElement.addEventListener('click', () => {
     menuElement.classList.remove('active');
+    overlayElement.classList.remove('active');
     });
 
     overlayElement.addEventListener('click', () => {
     menuElement.classList.remove('active');
+    overlayElement.classList.remove('active');
     });
 
     // Bar level calculating
