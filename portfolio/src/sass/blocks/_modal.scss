@@ -1,0 +1,61 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: white, $alpha: 0.0);
+    z-index: 10;
+
+    visibility: hidden;
+    
+    &.active {
+        transition: all 0.7s;
+        visibility: visible;
+        background-color: rgba($color: white, $alpha: 0.75);
+    }
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    min-height: 400px;
+    background-color: $main-color;
+    padding: 38px 40px 40px 40px;
+    z-index: 20;
+
+    &__close {
+        position: absolute;
+        top: 0;
+        right: -40px;
+        font-size: 41px;
+        line-height: 21px;
+        color: $main-color;
+        cursor: pointer;
+    }
+
+    &__subtitle {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0d0d0d;
+        text-align: center;
+    }
+
+    &__descr {
+        font-size: 14px;
+        font-weight: 500;
+        color: #0d0d0d;
+        text-align: center;
+    }
+
+    &_mini {
+        min-height: 140px;
+    }
+}
+
+#thanks {
+    display: block;
+}
