@@ -129,21 +129,29 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Send data from form
+    // Send data from form and check recaptcha response
 
     $('form').submit(function (e) {
 		e.preventDefault();
-		$.ajax({
-			type: "POST",
-			url: "mailer/smart.php",
-			data: $(this).serialize(),
-			success: function (response) {
-				$(this).find('input').val('');
-                $(this).find('textarea').val('');
-
-				$('form').trigger('reset');
-			}
-		});
+        var response = grecaptcha.getResponse();
+        if(response.length == 0) {
+            alert('Вы не прошли проверку CAPTCHA должным образом');
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "mailer/smart.php",
+                data: $(this).serialize(),
+                success: function (response) {
+                    $(this).find('input').val('');
+                    $(this).find('textarea').val('');
+                    
+                    $('.overlay, #thanks').fadeIn('slow');
+                    
+                    $('form').trigger('reset');
+                }
+            });    
+        }
 		return false;
 	});
 })
