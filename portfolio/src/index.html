@@ -149,7 +149,10 @@
 	<section class="about-me wow animate__animated animate__zoomIn" id="about-me">
 		<div class="container">
 			<div class="about-me__photo">
-				<img src="img/first_photo.webp" alt="me">
+				<picture>
+					<source srcset="img/first_photo.webp" type="image/webp">
+					<img src="img/first_photo.jpg" alt="me">
+				</picture>
 			</div>
 			<div class="about-me__info">
 				<div class="title title_fz16 about-me__info-title">Про меня</div>
@@ -441,22 +444,40 @@
 
 			<div class="portfolio__wrapper">
 				<a href="https://timhmdv.github.io/uber/" class="portfolio__item">
-					<img src="img/works/uber.webp" alt="uber">
+					<picture>
+						<source srcset="img/works/uber.webp" type="image/webp">
+						<img src="img/works/uber.jpg" alt="uber">
+					</picture>
 				</a>
 				<a href="https://timhmdv.github.io/pulse/dist/" class="portfolio__item">
-					<img src="img/works/pulse.webp" alt="pulse">
+					<picture>
+						<source srcset="img/works/pulse.webp" type="image/webp">
+						<img src="img/works/pulse.jpg" alt="pulse">
+					</picture>
 				</a>
 				<a href="#" class="portfolio__item">
-					<img src="img/works/bread.webp" alt="bread">
+					<picture>
+						<source srcset="img/works/bread.webp" type="image/webp">
+						<img src="img/works/bread.jpg" alt="bread">
+					</picture>
 				</a>
 				<a href="#" class="portfolio__item vertical">
-					<img src="img/works/plans.webp" alt="plans">
+					<picture>
+						<source srcset="img/works/plans.webp" type="image/webp">
+						<img src="img/works/plans.jpg" alt="plans">
+					</picture>
 				</a>
 				<a href="#" class="portfolio__item">
-					<img src="img/works/ipad.webp" alt="ipad">
+					<picture>
+						<source srcset="img/works/ipad.webp" type="image/webp">
+						<img src="img/works/ipad.jpg" alt="ipad">
+					</picture>
 				</a>
 				<a href="#" class="portfolio__item horizontal">
-					<img src="img/works/mac.webp" alt="mac">
+					<picture>
+						<source srcset="img/works/mac.webp" type="image/webp">
+						<img src="img/works/mac.jpg" alt="mac">
+					</picture>
 				</a>
 			</div>
 		</div>
@@ -466,7 +487,10 @@
 		<div class="container">
 			<div class="contacts__wrapper">
 				<div class="contacts__photo">
-					<img src="img/second_photo.webp" alt="me">
+					<picture>
+						<source srcset="img/second_photo.webp" type="image/webp">
+						<img src="img/second_photo.jpg" alt="me">
+					</picture>
 				</div>
 				<div class="contacts__descr">
 					<div class="title title_fz16 contacts__title">Контакты</div>
@@ -505,6 +529,9 @@
 								<span>Я согласен(а) с <a href="./policy.html">политикой конфиденциальности</a></span>
 							</div>
 						</div>
+						<div class="contacts__recaptcha">
+							<div class="g-recaptcha" data-sitekey="6LdZjRciAAAAADZyNcMyN0MfpfY10k1aA1GjFVHo"></div>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -512,7 +539,7 @@
 	</section>
 
 	<div class="overlay">
-		<div class="modal modal_mini" id="thanks">
+		<div class="modal" id="thanks">
 			<div class="modal__close">&times;</div>
 			<div class="modal__subtitle">Письмо отправлено!</div>
 			<div class="modal__descr">Я свяжусь с Вами 
@@ -520,6 +547,7 @@
 		</div>
 	</div>
 
+	<script src="https://www.google.com/recaptcha/api.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
