@@ -235,6 +235,10 @@
             }
         }
 
+        &__recaptcha {
+            grid-column: unset;
+        }
+        
         &__textarea {
             grid-column: unset;
         }
