@@ -22,8 +22,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 380px;
-    min-height: 400px;
+    min-height: 140px;
     background-color: $main-color;
+    border-radius: 1%;
     padding: 38px 40px 40px 40px;
     z-index: 20;
 
@@ -49,10 +50,6 @@
         font-weight: 500;
         color: #0d0d0d;
         text-align: center;
-    }
-
-    &_mini {
-        min-height: 140px;
     }
 }
 
