@@ -56,6 +56,7 @@ gulp.task("images", function () {
 	.src("src/img/**/*")
 	.pipe(newer('dist/img/'))
 	.pipe(imagemin())
+	.pipe(gulp.dest('dist/img/'))
 	.pipe(webp())
     .pipe(gulp.dest('dist/img/'))
 	.pipe(browserSync.stream());
