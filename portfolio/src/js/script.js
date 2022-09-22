@@ -124,7 +124,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 required: "Необходимо ввести сообщение"
             },
             checkbox: {
-                required: "Необходимо согласие"
+                required: "Необходимо согласие!"
             }
         }
     });
