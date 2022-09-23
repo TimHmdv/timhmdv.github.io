@@ -135,7 +135,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		e.preventDefault();
         var response = grecaptcha.getResponse();
         if(response.length == 0) {
-            alert('Вы не прошли проверку CAPTCHA должным образом');
             return false;
         } else {
             $.ajax({
@@ -143,11 +142,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 url: "mailer/smart.php",
                 data: $(this).serialize(),
                 success: function (response) {
+                    $('.overlay, #thanks').fadeIn('slow');
                     $(this).find('input').val('');
                     $(this).find('textarea').val('');
-                    
-                    $('.overlay, #thanks').fadeIn('slow');
-                    
+                    grecaptcha.reset();
                     $('form').trigger('reset');
                 }
             });    
