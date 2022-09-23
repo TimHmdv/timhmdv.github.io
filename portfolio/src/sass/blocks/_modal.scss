@@ -23,18 +23,20 @@
     transform: translate(-50%, -50%);
     width: 380px;
     min-height: 140px;
-    background-color: $main-color;
+    background-color: rgba($color: $main-color, $alpha: 0.0);
     border-radius: 1%;
     padding: 38px 40px 40px 40px;
     z-index: 20;
 
+    visibility: hidden;
+
     &__close {
         position: absolute;
-        top: 0;
-        right: -40px;
+        top: 5px;
+        right: 5px;
         font-size: 41px;
         line-height: 21px;
-        color: $main-color;
+        color: #0d0d0d;
         cursor: pointer;
     }
 
@@ -51,8 +53,10 @@
         color: #0d0d0d;
         text-align: center;
     }
-}
 
-#thanks {
-    display: none;
+    &.active {
+        transition: all 0.7s;
+        visibility: visible;
+        background-color: rgba($color: $main-color, $alpha: 1.0);
+    }
 }
