@@ -1,8 +1,8 @@
 <?php 
 
 $name = $_POST['name'];
-$phone = $_POST['phone'];
 $email = $_POST['email'];
+$text = $_POST['text'];
 
 require_once('phpmailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
@@ -28,7 +28,7 @@ $mail->addAddress('');     // Add a recipient
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Данные';
+$mail->Subject = 'Сообщение с сайта-портфолио';
 $mail->Body    = '
 	Пользователь оставил данные <br> 
 	Имя: ' . $name . ' <br>
@@ -36,10 +36,30 @@ $mail->Body    = '
 	E-mail: ' . $email . '	
 ';
 
-if(!$mail->send()) {
-    return false;
-} else {
-    return true;
+$response = $_POST["g-recaptcha-response"];
+$url = 'https://www.google.com/recaptcha/api/siteverify';
+$data = array(
+    'secret' => 'YOUR_SECRET',
+    'response' => $_POST["g-recaptcha-response"]
+);
+$options = array(
+    'http' => array (
+        'method' => 'POST',
+        'content' => http_build_query($data)
+    )
+);
+$context  = stream_context_create($options);
+$verify = file_get_contents($url, false, $context);
+$captcha_success=json_decode($verify);
+
+ if ($captcha_success->success==false) {
+    echo "Captcha wrong";
+} else if ($captcha_success->success==true) {
+	if(!$mail->send()) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 ?>

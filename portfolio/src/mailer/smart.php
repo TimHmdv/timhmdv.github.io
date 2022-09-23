@@ -1,8 +1,8 @@
 <?php 
 
 $name = $_POST['name'];
-$phone = $_POST['phone'];
 $email = $_POST['email'];
+$text = $_POST['text'];
 
 require_once('phpmailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
@@ -28,7 +28,7 @@ $mail->addAddress('');     // Add a recipient
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Данные';
+$mail->Subject = 'Сообщение с сайта-портфолио';
 $mail->Body    = '
 	Пользователь оставил данные <br> 
 	Имя: ' . $name . ' <br>
