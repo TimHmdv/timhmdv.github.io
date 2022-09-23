@@ -4,7 +4,9 @@ window.addEventListener('DOMContentLoaded', () => {
     menuElement = document.querySelector('.menu'),
     menuLinkElements = document.querySelectorAll('.menu__link'),
     closeElement = document.querySelector('.menu__close'),
-    overlayElement = document.querySelector('.overlay');
+    overlayElement = document.querySelector('.overlay'),
+    modalElement = document.querySelector('.modal'),
+    modalCloseElement = document.querySelector('.modal__close');
 
     hamburgerElement.addEventListener('click', () => {
     menuElement.classList.add('active');
@@ -26,6 +28,12 @@ window.addEventListener('DOMContentLoaded', () => {
     overlayElement.addEventListener('click', () => {
     menuElement.classList.remove('active');
     overlayElement.classList.remove('active');
+    modalElement.classList.remove('active');
+    });
+
+    modalCloseElement.addEventListener('click', () => {
+        overlayElement.classList.remove('active');
+        modalElement.classList.remove('active');
     });
 
     // Bar level calculating
@@ -142,7 +150,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 url: "mailer/smart.php",
                 data: $(this).serialize(),
                 success: function (response) {
-                    $('.overlay, #thanks').fadeIn('slow');
+                    $('.overlay, .modal').addClass('active');
                     $(this).find('input').val('');
                     $(this).find('textarea').val('');
                     grecaptcha.reset();
