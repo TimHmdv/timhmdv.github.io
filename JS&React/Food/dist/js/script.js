@@ -289,11 +289,10 @@ window.addEventListener('DOMContentLoaded', () => {
       form.append(statusMessage);
       const request = new XMLHttpRequest();
       request.open('POST', 'php/server.php');
-      request.setRequestHeader('Content-type', 'multipart/form-data');
       const formData = new FormData(form);
       request.send(formData);
       request.addEventListener('load', () => {
-        if (request.status === '200') {
+        if (request.status === 200) {
           console.log(request.response);
           statusMessage.textContent = message.success;
         } else {
