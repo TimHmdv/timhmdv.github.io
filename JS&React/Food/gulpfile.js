@@ -48,8 +48,8 @@ gulp.task("build-js", () => {
 });
 
 gulp.task("build-php", () => {
-  return gulp.src("./src/*.php")
-              .pipe(gulp.dest(dist + '/'))
+  return gulp.src("./src/php/**/*.php")
+              .pipe(gulp.dest(dist + '/php/'))
 });
 
 gulp.task("build-sass", () => {
