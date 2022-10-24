@@ -88,7 +88,7 @@ gulp.task("watch", () => {
     gulp.watch("./src/img/**/*.*", gulp.parallel("copy-assets"));
     gulp.watch("./src/scss/**/*.scss", gulp.parallel("build-sass"));
     gulp.watch("./src/js/**/*.js", gulp.parallel("build-js"));
-    gulp.watch("./src/*.php", gulp.parallel("build-php"));
+    gulp.watch("./src/php/**/*.php", gulp.parallel("build-php"));
 });
 
 gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-sass", "build-js", "build-php"));
