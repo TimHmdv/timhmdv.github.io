@@ -5,6 +5,7 @@ const autoprefixer = require("autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const postcss = require("gulp-postcss");
 const browsersync = require("browser-sync");
+var connectPHP = require('gulp-connect-php');
 
 const dist = "./dist";
 
@@ -46,6 +47,11 @@ gulp.task("build-js", () => {
                 .pipe(browsersync.stream());
 });
 
+gulp.task("build-php", () => {
+  return gulp.src("./src/*.php")
+              .pipe(gulp.dest(dist + '/'))
+});
+
 gulp.task("build-sass", () => {
     return gulp.src("./src/scss/**/*.scss")
                 .pipe(sass().on('error', sass.logError))
@@ -63,20 +69,29 @@ gulp.task("copy-assets", () => {
 });
 
 gulp.task("watch", () => {
-    browsersync.init({
-		server: "./dist/",
-		port: 4000,
-		notify: true
-    });
+    connectPHP.server({ 
+      base: './dist/', 
+      keepalive:true, 
+      hostname: 'localhost', 
+      port: 3000, 
+      open: false,
+      stdio: 'ignore'
+    }, () => {
+        browsersync.init({
+          proxy: '127.0.0.1:3000',
+          notify: true
+        });
+      });
 
     gulp.watch("./src/index.html", gulp.parallel("copy-html"));
     gulp.watch("./src/icons/**/*.*", gulp.parallel("copy-assets"));
     gulp.watch("./src/img/**/*.*", gulp.parallel("copy-assets"));
     gulp.watch("./src/scss/**/*.scss", gulp.parallel("build-sass"));
     gulp.watch("./src/js/**/*.js", gulp.parallel("build-js"));
+    gulp.watch("./src/*.php", gulp.parallel("build-php"));
 });
 
-gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-sass", "build-js"));
+gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-sass", "build-js", "build-php"));
 
 gulp.task("prod", () => {
     gulp.src("./src/index.html")
