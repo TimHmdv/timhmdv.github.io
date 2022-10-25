@@ -1,3 +1,5 @@
+"use strict";
+
 window.addEventListener('DOMContentLoaded', () => {
     const tabsParent = document.querySelector('.tabheader__items'),
             tabs = document.querySelectorAll('.tabheader__item '),
@@ -250,7 +252,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const formData = new FormData(form);
 
-            request.send(formData);
+            let formDataObject = {};
+
+            formData.forEach((item, key) => {
+                formDataObject[key] = item;
+            });
+
+            const jsonData = JSON.stringify(formDataObject); 
+
+            request.send(jsonData);
 
             request.addEventListener ('load', () => {
                 if (request.status === 200) {
