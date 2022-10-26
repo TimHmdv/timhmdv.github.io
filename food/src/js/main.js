@@ -121,8 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     modal.addEventListener('click', e =>{
-        console.log(e.target.getAttribute('[data-close]'));
-        if (e.target === modal || e.target.getAttribute('[data-close]') == '') {
+        if (e.target === modal || e.target.className === 'modal__close') {
             closeElement(modal);
         }
     });
@@ -262,11 +261,12 @@ window.addEventListener('DOMContentLoaded', () => {
             request.send(jsonData);
 
             request.addEventListener ('load', () => {
+                statusMessage.remove()
+                
                 if (request.status === 200) {
                     console.log(request.response);
                     showThanksModal(message.success);
                     form.reset();
-                    //statusMessage.remove()
                 }
 
                 else {
