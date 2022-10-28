@@ -73,12 +73,16 @@ gulp.task("watch", () => {
       base: './dist/', 
       keepalive:true, 
       hostname: 'localhost', 
-      port: 3000, 
+      port: 4000, 
       open: false,
       stdio: 'ignore'
     }, () => {
         browsersync.init({
-          proxy: '127.0.0.1:3000',
+          port: '4001',
+          ui: {
+            port: '4002'
+          },
+          proxy: '127.0.0.1:4000',
           notify: true
         });
       });
