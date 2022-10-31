@@ -300,4 +300,36 @@ window.addEventListener('DOMContentLoaded', () => {
             closeElement(modal);
         }, 4000);
     }
+
+    // Slides
+
+    const offerSlider = document.querySelector('.offer__slider'),
+        offerSliderCounter = offerSlider.querySelector('.offer__slider-counter'),
+            offerSliderPrev = offerSliderCounter.querySelector('.offer__slider-prev'),
+            offerSliderCurrent =  offerSliderCounter.querySelector('#current'),
+            offerSliderTotal =  offerSliderCounter.querySelector('#total'),
+            offerSliderNext = offerSliderCounter.querySelector('.offer__slider-next'),
+        offerSliderWrapper = offerSlider.querySelector('.offer__slider-wrapper'),
+            offerSlides = offerSliderWrapper.querySelectorAll('.offer__slide');
+
+    let currentSliderIndex = 1;
+    const totalSlidersCount = offerSlides.length;
+
+    offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex)}`;
+    offerSliderTotal.innerHTML = `${addZero(totalSlidersCount)}`;
+
+    offerSliderNext.addEventListener('click', () => {
+        if(currentSliderIndex < totalSlidersCount) {
+            currentSliderIndex++;
+            console.log(currentSliderIndex);
+        }
+    });
+
+    offerSliderPrev.addEventListener('click', () => {
+        if(currentSliderIndex > 1) {
+            currentSliderIndex--;
+            console.log(currentSliderIndex);
+        }
+    });
+
 });
