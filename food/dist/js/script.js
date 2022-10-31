@@ -181,7 +181,8 @@ window.addEventListener('DOMContentLoaded', () => {
   function openElement(element) {
     element.classList.remove('hide');
     element.classList.add('show', 'fade');
-    document.body.style.overflow = 'hidden';
+
+    // document.body.style.overflow = 'hidden';
 
     // if (element === modal) {
     //     clearInterval(modalTimerId);
@@ -374,20 +375,28 @@ window.addEventListener('DOMContentLoaded', () => {
     offerSliderNext = offerSliderCounter.querySelector('.offer__slider-next'),
     offerSliderWrapper = offerSlider.querySelector('.offer__slider-wrapper'),
     offerSlides = offerSliderWrapper.querySelectorAll('.offer__slide');
-  let currentSliderIndex = 1;
+  let currentSliderIndex = 0;
   const totalSlidersCount = offerSlides.length;
-  offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex)}`;
+  offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex + 1)}`;
   offerSliderTotal.innerHTML = `${addZero(totalSlidersCount)}`;
+  offerSlides.forEach(item => {
+    closeElement(item);
+  });
+  openElement(offerSlides[currentSliderIndex]);
   offerSliderNext.addEventListener('click', () => {
-    if (currentSliderIndex < totalSlidersCount) {
+    if (currentSliderIndex < totalSlidersCount - 1) {
+      closeElement(offerSlides[currentSliderIndex]);
       currentSliderIndex++;
-      console.log(currentSliderIndex);
+      offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex + 1)}`;
+      openElement(offerSlides[currentSliderIndex]);
     }
   });
   offerSliderPrev.addEventListener('click', () => {
-    if (currentSliderIndex > 1) {
+    if (currentSliderIndex > 0) {
+      closeElement(offerSlides[currentSliderIndex]);
       currentSliderIndex--;
-      console.log(currentSliderIndex);
+      offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex + 1)}`;
+      openElement(offerSlides[currentSliderIndex]);
     }
   });
 });
