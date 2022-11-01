@@ -374,66 +374,119 @@ window.addEventListener('DOMContentLoaded', () => {
     offerSliderTotal = offerSliderCounter.querySelector('#total'),
     offerSliderNext = offerSliderCounter.querySelector('.offer__slider-next'),
     offerSliderWrapper = offerSlider.querySelector('.offer__slider-wrapper'),
-    offerSlides = offerSliderWrapper.querySelectorAll('.offer__slide');
-  let currentSliderIndex = 1;
-  const totalSlidersCount = offerSlides.length;
-  showSlides(currentSliderIndex);
-  offerSliderTotal.innerHTML = `${addZero(totalSlidersCount)}`;
-  function showSlides(n) {
-    if (n > totalSlidersCount) {
-      currentSliderIndex = 1;
-    }
-    if (n < 1) {
-      currentSliderIndex = totalSlidersCount;
-    }
-    offerSlides.forEach(item => closeElement(item));
-    openElement(offerSlides[currentSliderIndex - 1]);
-    offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex)}`;
-  }
-  function plusSlides(n) {
-    showSlides(currentSliderIndex += n);
-  }
-  offerSliderPrev.addEventListener('click', () => {
-    plusSlides(-1);
+    offerSliderInner = offerSliderWrapper.querySelector('.offer__slider-inner'),
+    offerSlides = offerSliderInner.querySelectorAll('.offer__slide'),
+    offerSliderWrapperWidth = window.getComputedStyle(offerSliderWrapper).width;
+  let currentSlideIndex = 1;
+  let innerOffset = 0;
+  const totalSlidesCount = offerSlides.length;
+  offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
+  offerSliderTotal.innerHTML = `${addZero(totalSlidesCount)}`;
+  offerSliderInner.style.width = `${100 * totalSlidesCount}%`;
+  offerSliderInner.style.display = 'flex';
+  offerSliderInner.style.transition = '0.5s all';
+  offerSliderWrapper.style.overflow = 'hidden';
+  offerSlides.forEach(slide => {
+    slide.style.width = offerSliderWrapperWidth;
   });
   offerSliderNext.addEventListener('click', () => {
-    plusSlides(1);
+    if (innerOffset == +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2) * (totalSlidesCount - 1)) {
+      innerOffset = 0;
+    } else {
+      innerOffset += +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2);
+    }
+    offerSliderInner.style.transform = `translateX(-${innerOffset}px)`;
+    if (currentSlideIndex == totalSlidesCount) {
+      currentSlideIndex = 1;
+    } else {
+      currentSlideIndex++;
+    }
+    offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
   });
+  offerSliderPrev.addEventListener('click', () => {
+    if (innerOffset == 0) {
+      innerOffset = +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2) * (totalSlidesCount - 1);
+    } else {
+      innerOffset -= +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2);
+    }
+    offerSliderInner.style.transform = `translateX(-${innerOffset}px)`;
+    if (currentSlideIndex == 1) {
+      currentSlideIndex = totalSlidesCount;
+    } else {
+      currentSlideIndex--;
+    }
+    offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
+  });
+  //-------------------------------------------------------------------
 
-  // offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex+1)}`;
-  // offerSliderTotal.innerHTML = `${addZero(totalSlidersCount)}`;
+  // showSlides(currentSlideIndex);
+
+  // offerSliderTotal.innerHTML = `${addZero(totalSlidesCount)}`;
+
+  // function showSlides(n) {
+  //     if (n > totalSlidesCount) {
+  //         currentSlideIndex = 1;
+  //     }
+
+  //     if (n < 1) {
+  //         currentSlideIndex = totalSlidesCount;
+  //     }
+
+  //     offerSlides.forEach (item => closeElement(item));
+
+  //     openElement(offerSlides[currentSlideIndex-1]);
+
+  //     offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
+  // }
+
+  // function plusSlides (n) {
+  //     showSlides(currentSlideIndex += n);
+  // }
+
+  // offerSliderPrev.addEventListener('click', () => {
+  //     plusSlides(-1);
+  // });
+
+  // offerSliderNext.addEventListener('click', () => {
+  //     plusSlides(1);
+  // });
+
+  //-------------------------------------------------------------------
+
+  // offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex+1)}`;
+  // offerSliderTotal.innerHTML = `${addZero(totalSlidesCount)}`;
 
   // offerSlides.forEach((item) => {
   //     closeElement(item);
   // });
 
-  // openElement(offerSlides[currentSliderIndex]);
+  // openElement(offerSlides[currentSlideIndex]);
 
   // offerSliderNext.addEventListener('click', () => {
-  //     if(currentSliderIndex < totalSlidersCount-1) {
-  //         closeElement(offerSlides[currentSliderIndex]);
-  //         currentSliderIndex++;
-  //         offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex+1)}`;
-  //         openElement(offerSlides[currentSliderIndex]);
+  //     if(currentSlideIndex < totalSlidesCount-1) {
+  //         closeElement(offerSlides[currentSlideIndex]);
+  //         currentSlideIndex++;
+  //         offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex+1)}`;
+  //         openElement(offerSlides[currentSlideIndex]);
   //     } else {
-  //         closeElement(offerSlides[currentSliderIndex]);
-  //         currentSliderIndex = 0;
-  //         offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex+1)}`;
-  //         openElement(offerSlides[currentSliderIndex]);
+  //         closeElement(offerSlides[currentSlideIndex]);
+  //         currentSlideIndex = 0;
+  //         offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex+1)}`;
+  //         openElement(offerSlides[currentSlideIndex]);
   //     }
   // });
 
   // offerSliderPrev.addEventListener('click', () => {
-  //     if(currentSliderIndex > 0) {
-  //         closeElement(offerSlides[currentSliderIndex]);
-  //         currentSliderIndex--;
-  //         offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex+1)}`;
-  //         openElement(offerSlides[currentSliderIndex]);
+  //     if(currentSlideIndex > 0) {
+  //         closeElement(offerSlides[currentSlideIndex]);
+  //         currentSlideIndex--;
+  //         offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex+1)}`;
+  //         openElement(offerSlides[currentSlideIndex]);
   //     } else {
-  //         closeElement(offerSlides[currentSliderIndex]);
-  //         currentSliderIndex = totalSlidersCount-1;
-  //         offerSliderCurrent.innerHTML = `${addZero(currentSliderIndex+1)}`;
-  //         openElement(offerSlides[currentSliderIndex]);
+  //         closeElement(offerSlides[currentSlideIndex]);
+  //         currentSlideIndex = totalSlidesCount-1;
+  //         offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex+1)}`;
+  //         openElement(offerSlides[currentSlideIndex]);
   //     }
   // });
 });
