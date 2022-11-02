@@ -365,7 +365,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 4000);
   }
 
-  // Slides
+  // Carousel slider
 
   const offerSlider = document.querySelector('.offer__slider'),
     offerSliderCounter = offerSlider.querySelector('.offer__slider-counter'),
@@ -386,8 +386,21 @@ window.addEventListener('DOMContentLoaded', () => {
   offerSliderInner.style.display = 'flex';
   offerSliderInner.style.transition = '0.5s all';
   offerSliderWrapper.style.overflow = 'hidden';
-  offerSlides.forEach(slide => {
+  offerSlider.style.position = 'relative';
+  const dotsWrapper = document.createElement('div');
+  dotsWrapper.classList.add('carousel-indicators');
+  offerSliderWrapper.append(dotsWrapper);
+  offerSlides.forEach((slide, slideIndex) => {
     slide.style.width = offerSliderWrapperWidth;
+    let dot = document.createElement('div');
+    dot.classList.add('dot');
+    dotsWrapper.append(dot);
+    dot.addEventListener('click', e => {
+      innerOffset = +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2) * slideIndex;
+      offerSliderInner.style.transform = `translateX(-${innerOffset}px)`;
+      currentSlideIndex = slideIndex + 1;
+      offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
+    });
   });
   offerSliderNext.addEventListener('click', () => {
     if (innerOffset == +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2) * (totalSlidesCount - 1)) {
@@ -417,6 +430,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
   });
+
   //-------------------------------------------------------------------
 
   // showSlides(currentSlideIndex);
