@@ -348,7 +348,7 @@ window.addEventListener('DOMContentLoaded', () => {
         allDots.push(dot);
 
         dot.addEventListener('click', (e) => {
-            innerOffset = +offerSliderWrapperWidth.replace(/\D/g, '') * slideIndex;
+            innerOffset = convertStringToNumber(offerSliderWrapperWidth) * slideIndex;
             offerSliderInner.style.transform = `translateX(-${innerOffset}px)`;
 
             allDots.forEach (item => item.style.opacity = '.5');
@@ -363,10 +363,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     offerSliderNext.addEventListener('click', () => {
-        if (innerOffset == +offerSliderWrapperWidth.replace(/\D/g, '') * (totalSlidesCount - 1)) {
+        if (innerOffset == convertStringToNumber(offerSliderWrapperWidth) * (totalSlidesCount - 1)) {
             innerOffset = 0;
         } else {
-            innerOffset += +offerSliderWrapperWidth.replace(/\D/g, '');
+            innerOffset += convertStringToNumber(offerSliderWrapperWidth) ;
         }
 
         offerSliderInner.style.transform = `translateX(-${innerOffset}px)`
@@ -385,9 +385,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     offerSliderPrev.addEventListener('click', () => {
         if (innerOffset == 0) {
-            innerOffset = +offerSliderWrapperWidth.replace(/\D/g, '') * (totalSlidesCount - 1);
+            innerOffset = convertStringToNumber(offerSliderWrapperWidth) * (totalSlidesCount - 1);
         } else {
-            innerOffset -= +offerSliderWrapperWidth.replace(/\D/g, '');
+            innerOffset -= convertStringToNumber(offerSliderWrapperWidth);
         }
 
         offerSliderInner.style.transform = `translateX(-${innerOffset}px)`
@@ -404,6 +404,9 @@ window.addEventListener('DOMContentLoaded', () => {
         allDots[currentSlideIndex-1].style.opacity = '1';
     })
     
+    function convertStringToNumber (string) {
+        return +string.replace(/\D/g, '');
+    }
 
     //-------------------------------------------------------------------
     
