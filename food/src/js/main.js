@@ -348,7 +348,7 @@ window.addEventListener('DOMContentLoaded', () => {
         allDots.push(dot);
 
         dot.addEventListener('click', (e) => {
-            innerOffset = +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2) * slideIndex;
+            innerOffset = +offerSliderWrapperWidth.replace(/\D/g, '') * slideIndex;
             offerSliderInner.style.transform = `translateX(-${innerOffset}px)`;
 
             allDots.forEach (item => item.style.opacity = '.5');
@@ -363,10 +363,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     offerSliderNext.addEventListener('click', () => {
-        if (innerOffset == +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2) * (totalSlidesCount - 1)) {
+        if (innerOffset == +offerSliderWrapperWidth.replace(/\D/g, '') * (totalSlidesCount - 1)) {
             innerOffset = 0;
         } else {
-            innerOffset += +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2);
+            innerOffset += +offerSliderWrapperWidth.replace(/\D/g, '');
         }
 
         offerSliderInner.style.transform = `translateX(-${innerOffset}px)`
@@ -385,9 +385,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     offerSliderPrev.addEventListener('click', () => {
         if (innerOffset == 0) {
-            innerOffset = +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2) * (totalSlidesCount - 1);
+            innerOffset = +offerSliderWrapperWidth.replace(/\D/g, '') * (totalSlidesCount - 1);
         } else {
-            innerOffset -= +offerSliderWrapperWidth.slice(0, offerSliderWrapperWidth.length - 2);
+            innerOffset -= +offerSliderWrapperWidth.replace(/\D/g, '');
         }
 
         offerSliderInner.style.transform = `translateX(-${innerOffset}px)`
