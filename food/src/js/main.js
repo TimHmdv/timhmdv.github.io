@@ -1,44 +1,37 @@
 "use strict";
+import tabs from './modules/tabs';
+import timer from './modules/timer';
+import modal from './modules/modal';
+import cards from './modules/cards';
+import form from './modules/form';
+import slider from './modules/slider';
+import calculator from './modules/calculator';
 
 window.addEventListener('DOMContentLoaded', () => {
-    
-    const tabs = require('./modules/tabs');
 
     tabs();
 
     // Timer
 
-    const timer = require('./modules/timer');
-
     timer();
 
     // Modal
-
-    const modal = require('./modules/modal');
 
     modal();
 
     // adding tabs from JS
 
-    const cards = require('./modules/cards');
-
     cards();
 
     // Forms
-
-    const form = require('./modules/form');
 
     form();
 
     // Carousel slider
 
-    const slider = require('./modules/slider');
-
     slider();
 
     // Calculator
-
-    const calculator = require('./modules/calculator');
 
     calculator();
 });

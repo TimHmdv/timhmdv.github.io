@@ -90,45 +90,53 @@
 /*!************************!*\
   !*** ./src/js/main.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
+/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
+/* harmony import */ var _modules_cards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/cards */ "./src/js/modules/cards.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/form */ "./src/js/modules/form.js");
+/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
+/* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calculator */ "./src/js/modules/calculator.js");
+
+
+
+
+
+
+
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  const tabs = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
-  tabs();
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])();
 
   // Timer
 
-  const timer = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
-  timer();
+  Object(_modules_timer__WEBPACK_IMPORTED_MODULE_1__["default"])();
 
   // Modal
 
-  const modal = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
-  modal();
+  Object(_modules_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
   // adding tabs from JS
 
-  const cards = __webpack_require__(/*! ./modules/cards */ "./src/js/modules/cards.js");
-  cards();
+  Object(_modules_cards__WEBPACK_IMPORTED_MODULE_3__["default"])();
 
   // Forms
 
-  const form = __webpack_require__(/*! ./modules/form */ "./src/js/modules/form.js");
-  form();
+  Object(_modules_form__WEBPACK_IMPORTED_MODULE_4__["default"])();
 
   // Carousel slider
 
-  const slider = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
-  slider();
+  Object(_modules_slider__WEBPACK_IMPORTED_MODULE_5__["default"])();
 
   // Calculator
 
-  const calculator = __webpack_require__(/*! ./modules/calculator */ "./src/js/modules/calculator.js");
-  calculator();
+  Object(_modules_calculator__WEBPACK_IMPORTED_MODULE_6__["default"])();
 });
 
 /***/ }),
@@ -137,9 +145,11 @@ window.addEventListener('DOMContentLoaded', () => {
 /*!**************************************!*\
   !*** ./src/js/modules/calculator.js ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function calculator() {
   const result = document.querySelector('.calculating__result span');
   let sex, height, weight, age, ratio;
@@ -228,7 +238,7 @@ function calculator() {
   getDynamicInformation('#weight');
   getDynamicInformation('#age');
 }
-module.exports = calculator;
+/* harmony default export */ __webpack_exports__["default"] = (calculator);
 
 /***/ }),
 
@@ -236,9 +246,11 @@ module.exports = calculator;
 /*!*********************************!*\
   !*** ./src/js/modules/cards.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function cards() {
   class MenuCard {
     constructor(src, alt, title, descr, price, parentSelector) {
@@ -301,7 +313,7 @@ function cards() {
     });
   });
 }
-module.exports = cards;
+/* harmony default export */ __webpack_exports__["default"] = (cards);
 
 /***/ }),
 
@@ -309,9 +321,11 @@ module.exports = cards;
 /*!********************************!*\
   !*** ./src/js/modules/form.js ***!
   \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function form() {
   const forms = document.querySelectorAll('form');
   const message = {
@@ -391,7 +405,7 @@ function form() {
     }, 4000);
   }
 }
-module.exports = form;
+/* harmony default export */ __webpack_exports__["default"] = (form);
 
 /***/ }),
 
@@ -399,9 +413,11 @@ module.exports = form;
 /*!*********************************!*\
   !*** ./src/js/modules/modal.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function modal() {
   const modalTriggers = document.querySelectorAll('[data-modal]'),
     modal = document.querySelector('.modal');
@@ -449,7 +465,7 @@ function modal() {
   }
   window.addEventListener('scroll', showModalByScroll);
 }
-module.exports = modal;
+/* harmony default export */ __webpack_exports__["default"] = (modal);
 
 /***/ }),
 
@@ -457,9 +473,11 @@ module.exports = modal;
 /*!**********************************!*\
   !*** ./src/js/modules/slider.js ***!
   \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function slider() {
   function addZero(number) {
     if (number >= 0 && number < 10) {
@@ -546,7 +564,7 @@ function slider() {
     return +string.replace(/\D/g, '');
   }
 }
-module.exports = slider;
+/* harmony default export */ __webpack_exports__["default"] = (slider);
 
 //-------------------------------------------------------------------
 
@@ -627,9 +645,11 @@ module.exports = slider;
 /*!********************************!*\
   !*** ./src/js/modules/tabs.js ***!
   \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function tabs() {
   const tabsParent = document.querySelector('.tabheader__items'),
     tabs = document.querySelectorAll('.tabheader__item '),
@@ -663,7 +683,7 @@ function tabs() {
     }
   });
 }
-module.exports = tabs;
+/* harmony default export */ __webpack_exports__["default"] = (tabs);
 
 /***/ }),
 
@@ -671,9 +691,11 @@ module.exports = tabs;
 /*!*********************************!*\
   !*** ./src/js/modules/timer.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function timer() {
   const deadLine = '2023-05-01';
   function getTimeRemaining(endTime) {
@@ -718,7 +740,7 @@ function timer() {
   }
   setClock('.timer', deadLine);
 }
-module.exports = timer;
+/* harmony default export */ __webpack_exports__["default"] = (timer);
 
 /***/ })
 
