@@ -1,13 +1,6 @@
+import {addZero} from './timer';
+
 function slider () {
-
-    function addZero (number) {
-        if (number >=0 && number < 10) {
-            return `0${number}`;
-        } else {
-            return number;
-        }
-    }
-
     const offerSlider = document.querySelector('.offer__slider'),
         offerSliderCounter = offerSlider.querySelector('.offer__slider-counter'),
             offerSliderPrev = offerSliderCounter.querySelector('.offer__slider-prev'),

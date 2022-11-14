@@ -1,3 +1,11 @@
+function addZero (number) {
+    if (number >=0 && number < 10) {
+        return `0${number}`;
+    } else {
+        return number;
+    }
+}
+
 function timer () {
     const deadLine = '2023-05-01';
 
@@ -14,14 +22,6 @@ function timer () {
             hours: hours,
             minutes: minutes,
             seconds: seconds
-        }
-    }
-
-    function addZero (number) {
-        if (number >=0 && number < 10) {
-            return `0${number}`;
-        } else {
-            return number;
         }
     }
 
@@ -54,3 +54,4 @@ function timer () {
 }
 
 export default timer;
+export {addZero};

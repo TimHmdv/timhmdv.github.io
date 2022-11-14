@@ -1,3 +1,5 @@
+import {openElement, closeElement} from './modal';
+
 function form () {
     const forms = document.querySelectorAll('form');
 

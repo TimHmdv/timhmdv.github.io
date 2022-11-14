@@ -1,29 +1,29 @@
+function openElement (element) {
+    element.classList.remove('hide');
+    element.classList.add('show', 'fade');
+    
+    // document.body.style.overflow = 'hidden';
+
+    // if (element === modal) {
+    //     clearInterval(modalTimerId);
+    // }
+} 
+
+function closeElement (element) {
+    element.classList.remove('show', 'fade');
+    element.classList.add('hide');
+    document.body.style.overflow = '';
+}
+
 function modal () {
     const modalTriggers = document.querySelectorAll('[data-modal]'),
             modal = document.querySelector('.modal');
-   
-    function openElement (element) {
-        element.classList.remove('hide');
-        element.classList.add('show', 'fade');
-        
-        // document.body.style.overflow = 'hidden';
-
-        // if (element === modal) {
-        //     clearInterval(modalTimerId);
-        // }
-    } 
 
     modalTriggers.forEach(item => {
         item.addEventListener('click', () => {
             openElement(modal);
         });
     });
-
-    function closeElement (element) {
-        element.classList.remove('show', 'fade');
-        element.classList.add('hide');
-        document.body.style.overflow = '';
-    }
 
     modal.addEventListener('click', e =>{
         if (e.target === modal || e.target.className === 'modal__close') {
@@ -52,3 +52,4 @@ function modal () {
 }
 
 export default modal;
+export {openElement, closeElement};

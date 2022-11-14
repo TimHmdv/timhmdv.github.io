@@ -326,6 +326,8 @@ function cards() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./src/js/modules/modal.js");
+
 function form() {
   const forms = document.querySelectorAll('form');
   const message = {
@@ -387,7 +389,7 @@ function form() {
   function showThanksModal(message) {
     const prevModalDialog = document.querySelector('.modal__dialog');
     prevModalDialog.classList.add('hide');
-    openElement(modal);
+    Object(_modal__WEBPACK_IMPORTED_MODULE_0__["openElement"])(modal);
     const thanksModal = document.createElement('div');
     thanksModal.classList.add('modal__dialog');
     thanksModal.innerHTML = `
@@ -401,7 +403,7 @@ function form() {
       thanksModal.remove();
       prevModalDialog.classList.add('show');
       prevModalDialog.classList.remove('hide');
-      closeElement(modal);
+      Object(_modal__WEBPACK_IMPORTED_MODULE_0__["closeElement"])(modal);
     }, 4000);
   }
 }
@@ -413,35 +415,37 @@ function form() {
 /*!*********************************!*\
   !*** ./src/js/modules/modal.js ***!
   \*********************************/
-/*! exports provided: default */
+/*! exports provided: default, openElement, closeElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openElement", function() { return openElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeElement", function() { return closeElement; });
+function openElement(element) {
+  element.classList.remove('hide');
+  element.classList.add('show', 'fade');
+
+  // document.body.style.overflow = 'hidden';
+
+  // if (element === modal) {
+  //     clearInterval(modalTimerId);
+  // }
+}
+
+function closeElement(element) {
+  element.classList.remove('show', 'fade');
+  element.classList.add('hide');
+  document.body.style.overflow = '';
+}
 function modal() {
   const modalTriggers = document.querySelectorAll('[data-modal]'),
     modal = document.querySelector('.modal');
-  function openElement(element) {
-    element.classList.remove('hide');
-    element.classList.add('show', 'fade');
-
-    // document.body.style.overflow = 'hidden';
-
-    // if (element === modal) {
-    //     clearInterval(modalTimerId);
-    // }
-  }
-
   modalTriggers.forEach(item => {
     item.addEventListener('click', () => {
       openElement(modal);
     });
   });
-  function closeElement(element) {
-    element.classList.remove('show', 'fade');
-    element.classList.add('hide');
-    document.body.style.overflow = '';
-  }
   modal.addEventListener('click', e => {
     if (e.target === modal || e.target.className === 'modal__close') {
       closeElement(modal);
@@ -467,6 +471,7 @@ function modal() {
 }
 /* harmony default export */ __webpack_exports__["default"] = (modal);
 
+
 /***/ }),
 
 /***/ "./src/js/modules/slider.js":
@@ -478,14 +483,9 @@ function modal() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timer */ "./src/js/modules/timer.js");
+
 function slider() {
-  function addZero(number) {
-    if (number >= 0 && number < 10) {
-      return `0${number}`;
-    } else {
-      return number;
-    }
-  }
   const offerSlider = document.querySelector('.offer__slider'),
     offerSliderCounter = offerSlider.querySelector('.offer__slider-counter'),
     offerSliderPrev = offerSliderCounter.querySelector('.offer__slider-prev'),
@@ -499,8 +499,8 @@ function slider() {
   let currentSlideIndex = 1;
   let innerOffset = 0;
   const totalSlidesCount = offerSlides.length;
-  offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
-  offerSliderTotal.innerHTML = `${addZero(totalSlidesCount)}`;
+  offerSliderCurrent.innerHTML = `${Object(_timer__WEBPACK_IMPORTED_MODULE_0__["addZero"])(currentSlideIndex)}`;
+  offerSliderTotal.innerHTML = `${Object(_timer__WEBPACK_IMPORTED_MODULE_0__["addZero"])(totalSlidesCount)}`;
   offerSliderInner.style.width = `${100 * totalSlidesCount}%`;
   offerSliderInner.style.display = 'flex';
   offerSliderInner.style.transition = '0.5s all';
@@ -525,7 +525,7 @@ function slider() {
       allDots.forEach(item => item.style.opacity = '.5');
       dot.style.opacity = '1';
       currentSlideIndex = slideIndex + 1;
-      offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
+      offerSliderCurrent.innerHTML = `${Object(_timer__WEBPACK_IMPORTED_MODULE_0__["addZero"])(currentSlideIndex)}`;
     });
   });
   offerSliderNext.addEventListener('click', () => {
@@ -540,7 +540,7 @@ function slider() {
     } else {
       currentSlideIndex++;
     }
-    offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
+    offerSliderCurrent.innerHTML = `${Object(_timer__WEBPACK_IMPORTED_MODULE_0__["addZero"])(currentSlideIndex)}`;
     allDots.forEach(item => item.style.opacity = '.5');
     allDots[currentSlideIndex - 1].style.opacity = '1';
   });
@@ -556,7 +556,7 @@ function slider() {
     } else {
       currentSlideIndex--;
     }
-    offerSliderCurrent.innerHTML = `${addZero(currentSlideIndex)}`;
+    offerSliderCurrent.innerHTML = `${Object(_timer__WEBPACK_IMPORTED_MODULE_0__["addZero"])(currentSlideIndex)}`;
     allDots.forEach(item => item.style.opacity = '.5');
     allDots[currentSlideIndex - 1].style.opacity = '1';
   });
@@ -691,11 +691,19 @@ function tabs() {
 /*!*********************************!*\
   !*** ./src/js/modules/timer.js ***!
   \*********************************/
-/*! exports provided: default */
+/*! exports provided: default, addZero */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addZero", function() { return addZero; });
+function addZero(number) {
+  if (number >= 0 && number < 10) {
+    return `0${number}`;
+  } else {
+    return number;
+  }
+}
 function timer() {
   const deadLine = '2023-05-01';
   function getTimeRemaining(endTime) {
@@ -711,13 +719,6 @@ function timer() {
       minutes: minutes,
       seconds: seconds
     };
-  }
-  function addZero(number) {
-    if (number >= 0 && number < 10) {
-      return `0${number}`;
-    } else {
-      return number;
-    }
   }
   function setClock(selector, endTime) {
     const timer = document.querySelector(selector),
@@ -741,6 +742,7 @@ function timer() {
   setClock('.timer', deadLine);
 }
 /* harmony default export */ __webpack_exports__["default"] = (timer);
+
 
 /***/ })
 
