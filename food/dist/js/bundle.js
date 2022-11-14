@@ -97,37 +97,8 @@
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  const tabsParent = document.querySelector('.tabheader__items'),
-    tabs = document.querySelectorAll('.tabheader__item '),
-    tabsContent = document.querySelectorAll('.tabcontent');
-  function hideTabContent() {
-    tabsContent.forEach(item => {
-      item.classList.add('hide');
-      item.classList.remove('show', 'fade');
-    });
-    tabs.forEach(item => {
-      item.classList.remove('tabheader__item_active');
-    });
-  }
-  function showTabContent() {
-    let index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    tabsContent[index].classList.add('show', 'fade');
-    tabsContent[index].classList.remove('hide');
-    tabs[index].classList.add('tabheader__item_active');
-  }
-  hideTabContent();
-  showTabContent();
-  tabsParent.addEventListener('click', e => {
-    const target = e.target;
-    if (target && target.classList.contains('tabheader__item')) {
-      tabs.forEach((item, index) => {
-        if (target == item) {
-          hideTabContent();
-          showTabContent(index);
-        }
-      });
-    }
-  });
+  const tabs = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+  tabs();
 
   // Timer
 
@@ -606,6 +577,50 @@ window.addEventListener('DOMContentLoaded', () => {
   //     }
   // });
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/tabs.js":
+/*!********************************!*\
+  !*** ./src/js/modules/tabs.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function tabs() {
+  const tabsParent = document.querySelector('.tabheader__items'),
+    tabs = document.querySelectorAll('.tabheader__item '),
+    tabsContent = document.querySelectorAll('.tabcontent');
+  function hideTabContent() {
+    tabsContent.forEach(item => {
+      item.classList.add('hide');
+      item.classList.remove('show', 'fade');
+    });
+    tabs.forEach(item => {
+      item.classList.remove('tabheader__item_active');
+    });
+  }
+  function showTabContent() {
+    let index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    tabsContent[index].classList.add('show', 'fade');
+    tabsContent[index].classList.remove('hide');
+    tabs[index].classList.add('tabheader__item_active');
+  }
+  hideTabContent();
+  showTabContent();
+  tabsParent.addEventListener('click', e => {
+    const target = e.target;
+    if (target && target.classList.contains('tabheader__item')) {
+      tabs.forEach((item, index) => {
+        if (target == item) {
+          hideTabContent();
+          showTabContent(index);
+        }
+      });
+    }
+  });
+}
+module.exports = tabs;
 
 /***/ })
 
