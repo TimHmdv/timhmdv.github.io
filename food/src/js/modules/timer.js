@@ -6,8 +6,7 @@ function addZero (number) {
     }
 }
 
-function timer () {
-    const deadLine = '2023-05-01';
+function timer (timerSelector, deadLine) {
 
     function getTimeRemaining (endTime) {
         const total = Date.parse(endTime) - Date.parse(new Date()),
@@ -50,7 +49,7 @@ function timer () {
 
     }
 
-    setClock('.timer', deadLine);
+    setClock(timerSelector, deadLine);
 }
 
 export default timer;

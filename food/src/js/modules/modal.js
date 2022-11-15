@@ -1,4 +1,4 @@
-function openElement (selector) {
+function openElement (selector, modalTimerId) {
     function open (element) {
         element.classList.remove('hide');
         element.classList.add('show', 'fade');
@@ -9,12 +9,11 @@ function openElement (selector) {
         const retrievedElement = document.querySelector(selector);
         open(retrievedElement);
     }
-    
-    // document.body.style.overflow = 'hidden';
 
-    // if (element === modal) {
-    //     clearInterval(modalTimerId);
-    // }
+    console.log(modalTimerId);
+    if (modalTimerId) {
+        clearInterval(modalTimerId);
+    }
 } 
 
 function closeElement (selector) {
@@ -30,13 +29,13 @@ function closeElement (selector) {
     }
 }
 
-function modal (triggerSelector, modalSelector) {
+function modal (triggerSelector, modalSelector, modalTimerId) {
     const modalTriggers = document.querySelectorAll('[data-modal]'),
             modal = document.querySelector('.modal');
 
     modalTriggers.forEach(item => {
         item.addEventListener('click', () => {
-            openElement(modal);
+            openElement(modal, modalTimerId);
         });
     });
 
@@ -52,13 +51,9 @@ function modal (triggerSelector, modalSelector) {
         }
     });
 
-    // const modalTimerId = setTimeout(() => {
-    //     openElement(modal);
-    // }, 5000);
-
     function showModalByScroll() {
         if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
-            openElement(modal);
+            openElement(modal, modalTimerId);
             window.removeEventListener('scroll', showModalByScroll);
         }
     }

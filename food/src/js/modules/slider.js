@@ -1,15 +1,15 @@
 import {addZero} from './timer';
 
-function slider () {
-    const offerSlider = document.querySelector('.offer__slider'),
-        offerSliderCounter = offerSlider.querySelector('.offer__slider-counter'),
-            offerSliderPrev = offerSliderCounter.querySelector('.offer__slider-prev'),
-            offerSliderCurrent =  offerSliderCounter.querySelector('#current'),
-            offerSliderTotal =  offerSliderCounter.querySelector('#total'),
-            offerSliderNext = offerSliderCounter.querySelector('.offer__slider-next'),
-        offerSliderWrapper = offerSlider.querySelector('.offer__slider-wrapper'),
-            offerSliderInner = offerSliderWrapper.querySelector('.offer__slider-inner'),
-            offerSlides = offerSliderInner.querySelectorAll('.offer__slide'),
+function slider ({container, slide, counterWrapper, nextArrow, prevArrow, totalCounter, currentCounter, sliderWrapper, field}) {
+    const offerSlider = document.querySelector(container),
+        offerSliderCounter = offerSlider.querySelector(counterWrapper),
+            offerSliderPrev = offerSliderCounter.querySelector(prevArrow),
+            offerSliderCurrent =  offerSliderCounter.querySelector(currentCounter),
+            offerSliderTotal =  offerSliderCounter.querySelector(totalCounter),
+            offerSliderNext = offerSliderCounter.querySelector(nextArrow),
+        offerSliderWrapper = offerSlider.querySelector(sliderWrapper),
+            offerSliderInner = offerSliderWrapper.querySelector(field),
+            offerSlides = offerSliderInner.querySelectorAll(slide),
     offerSliderWrapperWidth = window.getComputedStyle(offerSliderWrapper).width;
 
     let currentSlideIndex = 1;
