@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Modal
 
-    modal();
+    modal('[data-modal]', '.modal');
 
     // adding tabs from JS
 

@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Modal
 
-  Object(_modules_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_modules_modal__WEBPACK_IMPORTED_MODULE_2__["default"])('[data-modal]', '.modal');
 
   // adding tabs from JS
 
@@ -422,9 +422,17 @@ function form() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openElement", function() { return openElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeElement", function() { return closeElement; });
-function openElement(element) {
-  element.classList.remove('hide');
-  element.classList.add('show', 'fade');
+function openElement(selector) {
+  function open(element) {
+    element.classList.remove('hide');
+    element.classList.add('show', 'fade');
+  }
+  if (typeof selector === 'object') {
+    open(selector);
+  } else {
+    const retrievedElement = document.querySelector(selector);
+    open(retrievedElement);
+  }
 
   // document.body.style.overflow = 'hidden';
 
@@ -433,12 +441,19 @@ function openElement(element) {
   // }
 }
 
-function closeElement(element) {
-  element.classList.remove('show', 'fade');
-  element.classList.add('hide');
-  document.body.style.overflow = '';
+function closeElement(selector) {
+  function close(element) {
+    element.classList.remove('show', 'fade');
+    element.classList.add('hide');
+  }
+  if (typeof selector === 'object') {
+    close(selector);
+  } else {
+    const retrievedElement = document.querySelector(selector);
+    close(retrievedElement);
+  }
 }
-function modal() {
+function modal(triggerSelector, modalSelector) {
   const modalTriggers = document.querySelectorAll('[data-modal]'),
     modal = document.querySelector('.modal');
   modalTriggers.forEach(item => {

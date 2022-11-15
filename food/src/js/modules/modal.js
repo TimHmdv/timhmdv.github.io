@@ -1,6 +1,14 @@
-function openElement (element) {
-    element.classList.remove('hide');
-    element.classList.add('show', 'fade');
+function openElement (selector) {
+    function open (element) {
+        element.classList.remove('hide');
+        element.classList.add('show', 'fade');
+    }
+    if (typeof(selector) === 'object') {
+        open(selector);
+    } else {
+        const retrievedElement = document.querySelector(selector);
+        open(retrievedElement);
+    }
     
     // document.body.style.overflow = 'hidden';
 
@@ -9,13 +17,20 @@ function openElement (element) {
     // }
 } 
 
-function closeElement (element) {
-    element.classList.remove('show', 'fade');
-    element.classList.add('hide');
-    document.body.style.overflow = '';
+function closeElement (selector) {
+    function close (element) {
+        element.classList.remove('show', 'fade');
+        element.classList.add('hide');
+    }
+    if (typeof(selector) === 'object') {
+        close(selector);
+    } else {
+        const retrievedElement = document.querySelector(selector);
+        close(retrievedElement);
+    }
 }
 
-function modal () {
+function modal (triggerSelector, modalSelector) {
     const modalTriggers = document.querySelectorAll('[data-modal]'),
             modal = document.querySelector('.modal');
 
