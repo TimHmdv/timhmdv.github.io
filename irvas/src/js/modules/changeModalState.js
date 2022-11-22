@@ -11,15 +11,42 @@ const changeModalState =  (state) => {
     checkNumInputs(windowHeight);
 
     function bindActionToElements (event, element, property) {
-        element.forEach((item, index) => {
-            item.addEventListener(event, () => {
-                state[property] = index;
+        if (NodeList.prototype.isPrototypeOf(element)) {
+            element.forEach((item, index) => {
+                item.addEventListener(event, () => {
+                    switch (item.nodeName) {
+                        case 'SPAN':
+                            state[property] = index;
+                            console.log(state);
+                            break;
+                        case 'INPUT':
+                            if (item.getAttribute('type') === 'checkbox') {
+                                index === 0 ? state[property] = 'Холодное' : state[property] = 'Тёплое';
+                                console.log(state);
+                                element.forEach((box, j) => {
+                                    box.checked = false;
+                                    if (index == j) {
+                                        box.checked = true;
+                                    }
+                                });
+                            }
+                            break;
+                    }
+                });
+            });
+        } else if (Object.prototype.isPrototypeOf(element)) {
+            element.addEventListener(event, () => {
+                state[property] = element.value;
                 console.log(state);
             });
-        });
+        } 
     }
 
-    bindActionToElements('click', windowForm, 'form')
+    bindActionToElements('click', windowForm, 'form');
+    bindActionToElements('input', windowWidth, 'width');
+    bindActionToElements('input', windowHeight, 'height');
+    bindActionToElements('change', windowType, 'type');
+    bindActionToElements('change', windowProfile, 'profile');
 
 }
 
