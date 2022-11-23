@@ -18088,6 +18088,7 @@ var images = function images() {
       workSection = document.querySelector('.works'),
       bigImage = document.createElement('img');
   imgPopUp.classList.add('popup');
+  imgPopUp.classList.add('faded');
   workSection.appendChild(imgPopUp);
   imgPopUp.style.justifyContent = 'center';
   imgPopUp.style.alignItems = 'center';

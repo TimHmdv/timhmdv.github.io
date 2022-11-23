@@ -4,6 +4,7 @@ const images = () => {
             bigImage = document.createElement('img');
 
     imgPopUp.classList.add('popup');
+    imgPopUp.classList.add('faded');
     workSection.appendChild(imgPopUp);
     
     imgPopUp.style.justifyContent = 'center';
