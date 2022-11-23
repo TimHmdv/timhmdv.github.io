@@ -18133,7 +18133,8 @@ var modals = function modals() {
     var trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         close = document.querySelector(closeSelector),
-        windows = document.querySelectorAll('[data-modal]');
+        windows = document.querySelectorAll('[data-modal]'),
+        scroll = calcScroll();
     trigger.forEach(function (item) {
       item.addEventListener('click', function (e) {
         if (e.target) {
@@ -18144,7 +18145,8 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // document.body.classList.add('modal-open');
+        document.body.style.overflow = "hidden";
+        document.body.style.marginRight = "".concat(scroll, "px"); // document.body.classList.add('modal-open');
       });
     });
     close.addEventListener('click', function () {
@@ -18152,12 +18154,14 @@ var modals = function modals() {
         item.style.display = 'none';
       });
       modal.style.display = "none";
-      document.body.style.overflow = ""; // document.body.classList.remove('modal-open');
+      document.body.style.overflow = "";
+      document.body.style.marginRight = "0px"; // document.body.classList.remove('modal-open');
     });
     modal.addEventListener('click', function (e) {
       if (e.target === modal && closeClickOverlay) {
         modal.style.display = "none";
-        document.body.style.overflow = ""; // document.body.classList.remove('modal-open');
+        document.body.style.overflow = "";
+        document.body.style.marginRight = "0px"; // document.body.classList.remove('modal-open');
       }
     });
   }
@@ -18167,6 +18171,18 @@ var modals = function modals() {
       document.querySelector(selector).style.display = 'block';
       document.body.style.overflow = "hidden";
     }, time);
+  }
+
+  function calcScroll() {
+    var div = document.createElement('div');
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.overflowY = 'scroll';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    var scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
   }
 
   bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
