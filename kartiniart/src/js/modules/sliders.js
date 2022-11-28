@@ -1,5 +1,6 @@
-const sliders = (slides, direction, previous, next) => {
-    let slideIndex = 1;
+const sliders = (slides, verticalDirection, previous, next) => {
+    let slideIndex = 1,
+        paused = false;
     const items = document.querySelectorAll(slides);
            
     function showSlides(n) {
@@ -31,15 +32,43 @@ const sliders = (slides, direction, previous, next) => {
         
         prevBtn.addEventListener('click', () => {
             plusSlides(-1);
+            items[slideIndex - 1].classList.remove('slideInLeft');
+            items[slideIndex - 1].classList.add('slideInRight');
         })
 
         nextBtn.addEventListener('click', () => {
             plusSlides(1);
+            items[slideIndex - 1].classList.remove('slideInRight');
+            items[slideIndex - 1].classList.add('slideInLeft');
         })
 
     } catch (e) {
 
     }
+
+    function activateAnimation () {
+        if (verticalDirection) {
+            paused = setInterval(() => {
+                plusSlides(1);
+                items[slideIndex - 1].classList.add('slideInDown');
+            }, 3000);
+        } else {
+            paused = setInterval(() => {
+                plusSlides(1);
+                items[slideIndex - 1].classList.add('slideInRight');
+            }, 3000);
+        }
+    }
+
+    activateAnimation();
+    
+    items[0].parentNode.addEventListener('mouseenter', () => {
+        clearInterval(paused);
+    });
+
+    items[0].parentNode.addEventListener('mouseleave', () => {
+        activateAnimation();
+    });
 }
 
 export default sliders;
