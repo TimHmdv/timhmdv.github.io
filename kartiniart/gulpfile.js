@@ -3,6 +3,7 @@
 const gulp = require("gulp");
 const webpack = require("webpack-stream");
 const browsersync = require("browser-sync");
+const connectPHP = require("gulp-connect-php");
 
 const dist = "./dist/";
 
@@ -51,10 +52,22 @@ gulp.task("copy-assets", () => {
 });
 
 gulp.task("watch", () => {
-    browsersync.init({
-		server: "./dist/",
-		port: 4000,
-		notify: true
+  connectPHP.server({ 
+    base: './dist/', 
+    keepalive:true, 
+    hostname: '127.0.0.1', 
+    port: 4000, 
+    open: false,
+    stdio: 'ignore'
+  }, () => {
+      browsersync.init({
+        port: '4001',
+        ui: {
+          port: '4002'
+        },
+        proxy: '127.0.0.1:4000',
+        notify: true
+      });
     });
     
     gulp.watch("./src/index.html", gulp.parallel("copy-html"));
