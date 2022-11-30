@@ -1,3 +1,5 @@
+import { postData } from "../services/requests";
+
 const checkNumInputs = (input) => {
     if (NodeList.prototype.isPrototypeOf(input)) {
         input.forEach(item => {
@@ -36,15 +38,6 @@ const forms = (state) => {
     const path = {
         designer: 'assets/server.php',
         question: 'assets/question.php'
-    }
-
-    const postData = async (url, data) => {
-        let res = await fetch(url, {
-            method: 'POST',
-            body: data
-        });
-
-        return await res.text();
     }
 
     const clearInputs = () => {
