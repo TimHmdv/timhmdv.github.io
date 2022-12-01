@@ -85,6 +85,11 @@ const forms = (state) => {
             statusMessage.appendChild(texMessage);
 
             const formData = new FormData(item);
+
+            for (let key in state) {
+                formData.append(key, state[key]);
+            }
+
             let api;
             item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
 
