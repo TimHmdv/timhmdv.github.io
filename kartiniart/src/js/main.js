@@ -1,3 +1,4 @@
+import accordion from "./modules/accordion";
 import calc from "./modules/calc";
 import checkTextInputs from "./modules/checkTextInputs";
 import filter from "./modules/filter";
@@ -34,4 +35,6 @@ window.addEventListener('DOMContentLoaded', () => {
     filter();
 
     pictureSize('.sizes-block');
+
+    accordion('.accordion-heading');
 });
