@@ -90,10 +90,66 @@
 /*!************************!*\
   !*** ./src/js/main.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
 
+window.addEventListener('DOMContentLoaded', () => {
+  const slider = new _modules_slider__WEBPACK_IMPORTED_MODULE_0__["default"]('.page', '.next');
+  slider.render();
+});
+
+/***/ }),
+
+/***/ "./src/js/modules/slider.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/slider.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Slider; });
+class Slider {
+  constructor(page, btns) {
+    this.page = document.querySelector(page);
+    this.slides = this.page.children;
+    this.btns = document.querySelectorAll(btns);
+    this.slideIndex = 1;
+  }
+  showSlides(n) {
+    if (n > this.slides.length) {
+      this.slideIndex = 1;
+    }
+    if (n < 1) {
+      this.slideIndex = this.slides.length;
+    }
+    for (let slide of this.slides) {
+      slide.style.display = 'none';
+    }
+    this.slides[this.slideIndex - 1].style.display = 'block';
+  }
+  plusSlides(n) {
+    this.showSlides(this.slideIndex += n);
+  }
+  render() {
+    this.btns.forEach(item => {
+      item.addEventListener('click', () => {
+        this.plusSlides(1);
+      });
+      item.parentNode.previousElementSibling.addEventListener('click', e => {
+        e.preventDefault();
+        this.slideIndex = 1;
+        this.showSlides(this.slideIndex);
+      });
+    });
+    this.showSlides(this.slideIndex);
+  }
+}
 
 /***/ })
 
