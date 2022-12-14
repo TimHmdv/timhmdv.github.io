@@ -3,6 +3,7 @@
 const gulp = require("gulp");
 const webpack = require("webpack-stream");
 const browsersync = require("browser-sync");
+const connectPHP = require('gulp-connect-php');
 
 const dist = "./dist/";
 // const dist = "/Applications/MAMP/htdocs/test"; // Ссылка на вашу папку на сервере
@@ -52,16 +53,34 @@ gulp.task("copy-assets", () => {
 });
 
 gulp.task("watch", () => {
-    browsersync.init({
-        server: {
-            baseDir: "./dist/",
-            serveStaticOptions: {
-                extensions: ["html"]
-            }
-        },
-		port: 4000,
-		notify: true
-    });
+    // browsersync.init({
+    //     server: {
+    //         baseDir: "./dist/",
+    //         serveStaticOptions: {
+    //             extensions: ["html"]
+    //         }
+    //     },
+		// port: 4000,
+		// notify: true
+    // });
+
+    connectPHP.server({ 
+      base: './dist/', 
+      keepalive:true, 
+      hostname: '127.0.0.1', 
+      port: 4000, 
+      open: false,
+      stdio: 'ignore'
+    }, () => {
+        browsersync.init({
+          port: '4001',
+          ui: {
+            port: '4002'
+          },
+          proxy: '127.0.0.1:4000',
+          notify: true
+        });
+      });
     
     gulp.watch("./src/*.html", gulp.parallel("copy-html"));
     gulp.watch("./src/assets/**/*.*", gulp.parallel("copy-assets"));
