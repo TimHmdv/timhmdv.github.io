@@ -1,4 +1,5 @@
 import Difference from "./modules/difference";
+import SendForm from "./modules/form";
 import VideoPlayer from "./modules/playVideo";
 import MainSlider from "./modules/slider/slider-main";
 import MiniSlider from "./modules/slider/slider-mini";
@@ -50,4 +51,17 @@ window.addEventListener('DOMContentLoaded', () => {
         items: '.officer__card-item'
     });
     newOfficer.init();
+
+
+    const letsHelpForm  = new SendForm({
+        form: '.join__evolution form',
+        url: './assets/question.php'
+    });
+    letsHelpForm.init();
+
+    const selectTimeForm = new SendForm({
+        form: '.schedule__form form',
+        url: './assets/question.php'
+    });
+    selectTimeForm.init();
 });
