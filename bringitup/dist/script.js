@@ -5385,7 +5385,12 @@ function () {
     _classCallCheck(this, Difference);
 
     this.officer = document.querySelector(officer);
-    this.items = this.officer.querySelectorAll(items);
+
+    try {
+      this.items = this.officer.querySelectorAll(items);
+    } catch (e) {}
+
+    ;
     this.counter = 0;
   }
 
@@ -5417,8 +5422,12 @@ function () {
   }, {
     key: "init",
     value: function init() {
-      this.hideItems();
-      this.bindTriggers();
+      try {
+        this.hideItems();
+        this.bindTriggers();
+      } catch (e) {}
+
+      ;
     }
   }]);
 
@@ -5489,7 +5498,12 @@ function () {
     _classCallCheck(this, SendForm);
 
     this.form = document.querySelector(form);
-    this.allInputs = this.form.querySelector('input');
+
+    try {
+      this.allInputs = this.form.querySelector('input');
+    } catch (e) {}
+
+    ;
     this.url = url;
     this.progress = progress;
     this.allPhoneInputs = document.querySelectorAll('[name="phone"]');
@@ -5566,10 +5580,14 @@ function () {
   }, {
     key: "init",
     value: function init() {
-      this.checkMailInputs();
-      this.inputMask();
-      this.clearInputs();
-      this.sendData();
+      try {
+        this.checkMailInputs();
+        this.inputMask();
+        this.clearInputs();
+        this.sendData();
+      } catch (e) {}
+
+      ;
     }
   }]);
 
@@ -5853,21 +5871,23 @@ function (_Slider) {
       var _this2 = this;
 
       try {
-        this.hanson = document.querySelector('.hanson');
+        try {
+          this.hanson = document.querySelector('.hanson');
+        } catch (e) {}
+
+        this.btns.forEach(function (item) {
+          item.addEventListener('click', function () {
+            _this2.plusSlides(1);
+          });
+          item.parentNode.previousElementSibling.addEventListener('click', function (e) {
+            e.preventDefault();
+            _this2.slideIndex = 1;
+
+            _this2.showSlides(_this2.slideIndex);
+          });
+        });
+        this.showSlides(this.slideIndex);
       } catch (e) {}
-
-      this.btns.forEach(function (item) {
-        item.addEventListener('click', function () {
-          _this2.plusSlides(1);
-        });
-        item.parentNode.previousElementSibling.addEventListener('click', function (e) {
-          e.preventDefault();
-          _this2.slideIndex = 1;
-
-          _this2.showSlides(_this2.slideIndex);
-        });
-      });
-      this.showSlides(this.slideIndex);
     }
   }]);
 
@@ -6038,11 +6058,15 @@ function (_Slider) {
   }, {
     key: "init",
     value: function init() {
-      this.container.style.cssText = "\n            display: flex;\n            flex-wrap: wrap;\n            overflow: hidden;\n            align-items: flex-start;\n        ";
-      this.filterSlides();
-      this.decorizeSlides();
-      this.bindTriggers();
-      this.autoPlay();
+      try {
+        this.container.style.cssText = "\n                display: flex;\n                flex-wrap: wrap;\n                overflow: hidden;\n                align-items: flex-start;\n            ";
+        this.filterSlides();
+        this.decorizeSlides();
+        this.bindTriggers();
+        this.autoPlay();
+      } catch (e) {}
+
+      ;
     }
   }]);
 
@@ -6121,7 +6145,12 @@ var Slider = function Slider() {
   _classCallCheck(this, Slider);
 
   this.container = document.querySelector(container);
-  this.slides = _toConsumableArray(this.container.children);
+
+  try {
+    this.slides = _toConsumableArray(this.container.children);
+  } catch (e) {}
+
+  ;
   this.btns = document.querySelectorAll(btns);
   this.prev = document.querySelector(prev);
   this.next = document.querySelector(next);

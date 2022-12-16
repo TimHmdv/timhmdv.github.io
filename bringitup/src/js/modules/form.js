@@ -11,7 +11,7 @@ export default class SendForm {
         }
     }) {
         this.form = document.querySelector(form);
-        this.allInputs = this.form.querySelector('input');
+        try{this.allInputs = this.form.querySelector('input')} catch (e) {};
         this.url = url;
         this.progress = progress;
         this.allPhoneInputs = document.querySelectorAll('[name="phone"]');
@@ -90,9 +90,11 @@ export default class SendForm {
     }
 
     init () {
-        this.checkMailInputs();
-        this.inputMask();
-        this.clearInputs();
-        this.sendData();
+        try {
+            this.checkMailInputs();
+            this.inputMask();
+            this.clearInputs();
+            this.sendData();
+        } catch (e) {};
     }
 }
