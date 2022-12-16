@@ -34,14 +34,18 @@ export default class MiniSlider extends Slider {
     }
 
     bindTriggers () {
-        this.next.addEventListener('click', () => {
-            this.nextSlide();
-            clearInterval(this.sliderInterval);
+        this.next.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.nextSlide();
+                clearInterval(this.sliderInterval);
+            });
         });
 
-        this.prev.addEventListener('click', () => {
-           this.prevSlide();
-           clearInterval(this.sliderInterval);
+        this.prev.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.prevSlide();
+                clearInterval(this.sliderInterval);
+             });
         });
     }
 

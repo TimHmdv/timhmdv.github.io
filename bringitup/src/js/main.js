@@ -6,9 +6,19 @@ import MiniSlider from "./modules/slider/slider-mini";
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({
-        container:'.page', btns: '.next'
+        container:'.page', 
+        next: '.next',
+        reset: '.sidecontrol > a'
     });
     slider.render();
+
+    const moduleSlider = new MainSlider({
+        container: '.moduleapp',
+        next: '.next, .nextmodule',
+        prev: '.prevmodule',
+        reset: '.sidecontrol > a'
+    });
+    moduleSlider.render();
 
     const showUpSlider = new MiniSlider({
         container : '.showup__content-slider',
