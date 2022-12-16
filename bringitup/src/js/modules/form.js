@@ -14,6 +14,7 @@ export default class SendForm {
         this.allInputs = this.form.querySelector('input');
         this.url = url;
         this.progress = progress;
+        this.allPhoneInputs = document.querySelectorAll('[name="phone"]');
     }
 
 
@@ -69,6 +70,19 @@ export default class SendForm {
         });
     }
 
+    inputMask () {
+        this.allPhoneInputs.forEach(phoneInput => {
+            phoneInput.addEventListener('focus', function (e) {
+                e.target.value = '+1 ';
+            });
+            phoneInput.addEventListener('input', function (e) {
+                let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
+                e.target.value = '+1 ' + (!x[3] ? (!x[2] ? x[2] : '(' + x[2]) : '(' + x[2] + ') ' + x[3] 
+                                          + (x[4] ? '-' + x[4] : ''));
+            });
+        });
+    }
+
     clearInputs () {
         Array.from(this.allInputs).forEach(input=> {
             input.value='';
@@ -77,6 +91,7 @@ export default class SendForm {
 
     init () {
         this.checkMailInputs();
+        this.inputMask();
         this.clearInputs();
         this.sendData();
     }
