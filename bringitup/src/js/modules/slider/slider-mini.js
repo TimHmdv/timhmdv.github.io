@@ -2,8 +2,8 @@ import Slider from "./slider";
 
 
 export default class MiniSlider extends Slider {
-    constructor (container , prev, next, activeClass, animate, autoplay) {
-        super(container, prev, next, activeClass, animate, autoplay);
+    constructor (container , prev, next, activeClass, addOpacity, autoplay) {
+        super(container, prev, next, activeClass, addOpacity, autoplay);
     }
 
     filterSlides() {
@@ -18,7 +18,7 @@ export default class MiniSlider extends Slider {
         this.filteredSlides.forEach(slide => {
             slide.classList.remove(this.activeClass);
 
-            if (this.animate) {
+            if (this.addOpacity) {
                 slide.querySelector('.card__title').style.opacity = '0.4';
                 slide.querySelector('.card__controls-arrow').style.opacity = '0';
             }
@@ -27,7 +27,7 @@ export default class MiniSlider extends Slider {
         this.filteredSlides[0].classList.add(this.activeClass);
 
         
-        if (this.animate) {
+        if (this.addOpacity) {
             this.filteredSlides[0].querySelector('.card__title').style.opacity = '1';
             this.filteredSlides[0].querySelector('.card__controls-arrow').style.opacity = '1';
         }

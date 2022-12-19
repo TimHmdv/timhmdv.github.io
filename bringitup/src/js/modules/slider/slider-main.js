@@ -1,8 +1,16 @@
 import Slider from "./slider";
 
 export default class MainSlider extends Slider {
-    constructor (container, prev, next, reset) {
-        super(container, prev, next, reset);
+    constructor (container, prev, next, reset, animate) {
+        super(container, prev, next, reset, animate);
+    }
+
+    animateSlides () {
+        if (this.animate) {
+            this.slides.forEach(slide => {
+                slide.classList.add('animated', this.animate);
+            })
+        }
     }
 
     bindTriggers () {
@@ -65,6 +73,8 @@ export default class MainSlider extends Slider {
 
     render() {
         if (this.container) {
+            this.animateSlides();
+
             this.bindTriggers();
 
             try {

@@ -5303,14 +5303,16 @@ window.addEventListener('DOMContentLoaded', function () {
   var slider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_3__["default"]({
     container: '.page',
     next: '.next',
-    reset: '.sidecontrol > a'
+    reset: '.sidecontrol > a',
+    animate: 'fadeIn'
   });
   slider.render();
   var moduleSlider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_3__["default"]({
     container: '.moduleapp',
     next: '.next, .nextmodule',
     prev: '.prevmodule',
-    reset: '.sidecontrol > a'
+    reset: '.sidecontrol > a',
+    animate: 'fadeIn'
   });
   moduleSlider.render();
   var showUpSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_4__["default"]({
@@ -5318,7 +5320,7 @@ window.addEventListener('DOMContentLoaded', function () {
     prev: '.showup__prev',
     next: '.showup__next',
     activeClass: 'card-active',
-    animate: true
+    addOpacity: true
   });
   showUpSlider.init();
   var modulesSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_4__["default"]({
@@ -5326,7 +5328,6 @@ window.addEventListener('DOMContentLoaded', function () {
     prev: '.modules__info-btns .slick-prev',
     next: '.modules__info-btns .slick-next',
     activeClass: 'card-active',
-    animate: true,
     autoplay: true
   });
   modulesSlider.init();
@@ -5339,6 +5340,8 @@ window.addEventListener('DOMContentLoaded', function () {
   feedSlider.init();
   var player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_2__["default"]('.showup .play', '.overlay');
   player.init();
+  var modulePlayer = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_2__["default"]('.module__video-item .play', '.overlay');
+  modulePlayer.init();
   var oldOfficer = new _modules_difference__WEBPACK_IMPORTED_MODULE_0__["default"]({
     officer: '.officerold',
     items: '.officer__card-item'
@@ -5616,8 +5619,11 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return VideoPlayer; });
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5635,6 +5641,7 @@ function () {
     this.btns = document.querySelectorAll(triggers);
     this.overlay = document.querySelector(overlay);
     this.close = this.overlay.querySelector('.close');
+    this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
   }
 
   _createClass(VideoPlayer, [{
@@ -5642,11 +5649,37 @@ function () {
     value: function bindTriggers() {
       var _this = this;
 
-      this.btns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var path = btn.getAttribute('data-url');
+      this.btns.forEach(function (btn, i) {
+        try {
+          var blockedElem = btn.closest('.module__video-item').nextElementSibling;
 
-          _this.createPlayer(path);
+          if (i % 2 == 0) {
+            blockedElem.setAttribute('data-disabled', 'true');
+          }
+        } catch (e) {}
+
+        btn.addEventListener('click', function () {
+          if (!btn.closest('.module__video-item') || btn.closest('.module__video-item').getAttribute('data-disabled') !== 'true') {
+            _this.activeBtn = btn;
+
+            if (_this.player) {
+              _this.overlay.style.display = 'flex';
+
+              if (_this.path !== btn.getAttribute('data-url')) {
+                _this.path = btn.getAttribute('data-url');
+
+                _this.player.loadVideoById({
+                  videoId: _this.path
+                });
+              }
+            } else {
+              _this.path = btn.getAttribute('data-url');
+
+              _this.createPlayer(_this.path);
+
+              _this.overlay.style.display = 'flex';
+            }
+          }
         });
       });
     }
@@ -5664,27 +5697,47 @@ function () {
   }, {
     key: "createPlayer",
     value: function createPlayer(url) {
-      if (!this.player) {
-        this.player = new YT.Player('frame', {
-          height: '100%',
-          width: '100%',
-          videoId: "".concat(url)
-        });
-        console.log(this.player);
-        this.overlay.style.display = 'flex';
-      } else {
-        this.overlay.style.display = 'flex';
-      }
+      this.player = new YT.Player('frame', {
+        height: '100%',
+        width: '100%',
+        videoId: "".concat(url),
+        events: {
+          'onStateChange': this.onPlayerStateChange
+        }
+      });
+    }
+  }, {
+    key: "onPlayerStateChange",
+    value: function onPlayerStateChange(state) {
+      try {
+        var blockedElem = this.activeBtn.closest('.module__video-item').nextElementSibling;
+        var playBtn = this.activeBtn.querySelector('svg').cloneNode(true);
+
+        if (state.data === 0) {
+          if (blockedElem.querySelector('.play__circle').classList.contains('closed')) {
+            blockedElem.querySelector('.play__circle').classList.remove('closed');
+            blockedElem.querySelector('svg').remove();
+            blockedElem.querySelector('.play__circle').appendChild(playBtn);
+            blockedElem.querySelector('.play__text').textContent = 'play video';
+            blockedElem.querySelector('.play__text').classList.remove('attention');
+            blockedElem.style.opacity = 1;
+            blockedElem.style.filter = 'none';
+            blockedElem.setAttribute('data-disabled', 'false');
+          }
+        }
+      } catch (e) {}
     }
   }, {
     key: "init",
     value: function init() {
-      var tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      this.bindTriggers();
-      this.bindClose();
+      if (this.btns.length > 0) {
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        this.bindTriggers();
+        this.bindClose();
+      }
     }
   }]);
 
@@ -5810,23 +5863,34 @@ var MainSlider =
 function (_Slider) {
   _inherits(MainSlider, _Slider);
 
-  function MainSlider(container, prev, next, reset) {
+  function MainSlider(container, prev, next, reset, animate) {
     _classCallCheck(this, MainSlider);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, container, prev, next, reset));
+    return _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, container, prev, next, reset, animate));
   }
 
   _createClass(MainSlider, [{
+    key: "animateSlides",
+    value: function animateSlides() {
+      var _this = this;
+
+      if (this.animate) {
+        this.slides.forEach(function (slide) {
+          slide.classList.add('animated', _this.animate);
+        });
+      }
+    }
+  }, {
     key: "bindTriggers",
     value: function bindTriggers() {
-      var _this = this;
+      var _this2 = this;
 
       this.next.forEach(function (btn) {
         btn.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
 
-          _this.plusSlides(1);
+          _this2.plusSlides(1);
         });
       });
       this.prev.forEach(function (btn) {
@@ -5834,23 +5898,23 @@ function (_Slider) {
           e.preventDefault();
           e.stopPropagation();
 
-          _this.plusSlides(-1);
+          _this2.plusSlides(-1);
         });
       });
       this.reset.forEach(function (btn) {
         btn.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
-          _this.slideIndex = 1;
+          _this2.slideIndex = 1;
 
-          _this.showSlides(_this.slideIndex);
+          _this2.showSlides(_this2.slideIndex);
         });
       });
     }
   }, {
     key: "showSlides",
     value: function showSlides(n) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (n > this.slides.length) {
         this.slideIndex = 1;
@@ -5892,9 +5956,9 @@ function (_Slider) {
         if (n === 3) {
           this.hanson.classList.add('animated');
           this.timer = setTimeout(function () {
-            _this2.hanson.style.opacity = '1';
+            _this3.hanson.style.opacity = '1';
 
-            _this2.hanson.classList.add('slideInUp');
+            _this3.hanson.classList.add('slideInUp');
           }, 3000);
         }
       } catch (e) {}
@@ -5908,6 +5972,7 @@ function (_Slider) {
     key: "render",
     value: function render() {
       if (this.container) {
+        this.animateSlides();
         this.bindTriggers();
 
         try {
@@ -5996,10 +6061,10 @@ var MiniSlider =
 function (_Slider) {
   _inherits(MiniSlider, _Slider);
 
-  function MiniSlider(container, prev, next, activeClass, animate, autoplay) {
+  function MiniSlider(container, prev, next, activeClass, addOpacity, autoplay) {
     _classCallCheck(this, MiniSlider);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MiniSlider).call(this, container, prev, next, activeClass, animate, autoplay));
+    return _possibleConstructorReturn(this, _getPrototypeOf(MiniSlider).call(this, container, prev, next, activeClass, addOpacity, autoplay));
   }
 
   _createClass(MiniSlider, [{
@@ -6019,14 +6084,14 @@ function (_Slider) {
       this.filteredSlides.forEach(function (slide) {
         slide.classList.remove(_this.activeClass);
 
-        if (_this.animate) {
+        if (_this.addOpacity) {
           slide.querySelector('.card__title').style.opacity = '0.4';
           slide.querySelector('.card__controls-arrow').style.opacity = '0';
         }
       });
       this.filteredSlides[0].classList.add(this.activeClass);
 
-      if (this.animate) {
+      if (this.addOpacity) {
         this.filteredSlides[0].querySelector('.card__title').style.opacity = '1';
         this.filteredSlides[0].querySelector('.card__controls-arrow').style.opacity = '1';
       }
@@ -6169,10 +6234,12 @@ var Slider = function Slider() {
       reset = _ref$reset === void 0 ? null : _ref$reset,
       _ref$activeClass = _ref.activeClass,
       activeClass = _ref$activeClass === void 0 ? null : _ref$activeClass,
-      _ref$animate = _ref.animate,
-      animate = _ref$animate === void 0 ? false : _ref$animate,
       _ref$autoplay = _ref.autoplay,
-      autoplay = _ref$autoplay === void 0 ? false : _ref$autoplay;
+      autoplay = _ref$autoplay === void 0 ? false : _ref$autoplay,
+      _ref$addOpacity = _ref.addOpacity,
+      addOpacity = _ref$addOpacity === void 0 ? false : _ref$addOpacity,
+      _ref$animate = _ref.animate,
+      animate = _ref$animate === void 0 ? null : _ref$animate;
 
   _classCallCheck(this, Slider);
 
@@ -6187,9 +6254,10 @@ var Slider = function Slider() {
   this.next = document.querySelectorAll(next);
   this.reset = document.querySelectorAll(reset);
   this.activeClass = activeClass;
-  this.animate = animate;
+  this.addOpacity = addOpacity;
   this.autoplay = autoplay;
   this.slideIndex = 1;
+  this.animate = animate;
 };
 
 

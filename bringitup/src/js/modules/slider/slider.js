@@ -5,8 +5,9 @@ export default class Slider {
         prev = null,
         reset = null,
         activeClass = null,
-        animate = false,
-        autoplay = false
+        autoplay = false,
+        addOpacity = false,
+        animate = null
     } = {}){
         this.container = document.querySelector(container);
         try {this.slides = [...this.container.children];} catch (e) {};
@@ -14,9 +15,10 @@ export default class Slider {
         this.next = document.querySelectorAll(next);
         this.reset = document.querySelectorAll(reset);
         this.activeClass = activeClass;
-        this.animate = animate;
+        this.addOpacity = addOpacity;
         this.autoplay = autoplay;
         this.slideIndex = 1;
+        this.animate = animate;
     }
 
 }

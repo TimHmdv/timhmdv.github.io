@@ -8,7 +8,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({
         container:'.page', 
         next: '.next',
-        reset: '.sidecontrol > a'
+        reset: '.sidecontrol > a',
+        animate: 'fadeIn'
     });
     slider.render();
 
@@ -16,7 +17,8 @@ window.addEventListener('DOMContentLoaded', () => {
         container: '.moduleapp',
         next: '.next, .nextmodule',
         prev: '.prevmodule',
-        reset: '.sidecontrol > a'
+        reset: '.sidecontrol > a',
+        animate: 'fadeIn'
     });
     moduleSlider.render();
 
@@ -25,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
         prev: '.showup__prev',
         next: '.showup__next',
         activeClass: 'card-active',
-        animate: true
+        addOpacity: true
     });
     showUpSlider.init();
 
@@ -34,7 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
         prev: '.modules__info-btns .slick-prev',
         next: '.modules__info-btns .slick-next',
         activeClass: 'card-active',
-        animate: true,
         autoplay: true
     });
     modulesSlider.init();
@@ -49,6 +50,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const player = new VideoPlayer('.showup .play', '.overlay');
     player.init();
+
+    const modulePlayer = new VideoPlayer('.module__video-item .play', '.overlay');
+    modulePlayer.init();
 
     const oldOfficer = new Difference({
         officer: '.officerold',
