@@ -1,4 +1,6 @@
+import Accordion from "./modules/accordion";
 import Difference from "./modules/difference";
+import Download from "./modules/download";
 import SendForm from "./modules/form";
 import VideoPlayer from "./modules/playVideo";
 import MainSlider from "./modules/slider/slider-main";
@@ -78,4 +80,13 @@ window.addEventListener('DOMContentLoaded', () => {
         url: './assets/question.php'
     });
     selectTimeForm.init();
+
+    const accordion = new Accordion({
+        links: '.plus',
+        bodies: '.msg'
+    });
+    accordion.init();
+
+    const download = new Download('.download');
+    download.init();
 });
